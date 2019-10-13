@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/reactplayer/static/css/main.0a8798b3.chunk.css",
+    "main.js": "/reactplayer/static/js/main.e74d83dc.chunk.js",
+    "main.js.map": "/reactplayer/static/js/main.e74d83dc.chunk.js.map",
+    "runtime-main.js": "/reactplayer/static/js/runtime-main.b51f0126.js",
+    "runtime-main.js.map": "/reactplayer/static/js/runtime-main.b51f0126.js.map",
+    "static/css/2.af4f3140.chunk.css": "/reactplayer/static/css/2.af4f3140.chunk.css",
+    "static/js/2.7bfddf04.chunk.js": "/reactplayer/static/js/2.7bfddf04.chunk.js",
+    "static/js/2.7bfddf04.chunk.js.map": "/reactplayer/static/js/2.7bfddf04.chunk.js.map",
+    "index.html": "/reactplayer/index.html",
+    "precache-manifest.42a563f101254c2b972f4244cfaee363.js": "/reactplayer/precache-manifest.42a563f101254c2b972f4244cfaee363.js",
+    "service-worker.js": "/reactplayer/service-worker.js",
+    "static/css/2.af4f3140.chunk.css.map": "/reactplayer/static/css/2.af4f3140.chunk.css.map",
+    "static/css/main.0a8798b3.chunk.css.map": "/reactplayer/static/css/main.0a8798b3.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b51f0126.js",
+    "static/css/2.af4f3140.chunk.css",
+    "static/js/2.7bfddf04.chunk.js",
+    "static/css/main.0a8798b3.chunk.css",
+    "static/js/main.e74d83dc.chunk.js"
+  ]
+}
