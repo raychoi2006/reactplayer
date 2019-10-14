@@ -27,6 +27,7 @@ import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import PictureInPictureAltIcon from '@material-ui/icons/PictureInPictureAlt';
 import jpplaylist from './playlist';
 import chiplaylist from './chiplaylist';
+import chianimateplaylist from './chianimateplaylist';
 //import youtubeplaylist from './youtubeplaylist';
 import './reset.css'
 import './defaults.css'
