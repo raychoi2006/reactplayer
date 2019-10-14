@@ -20,20 +20,27 @@ import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import ShuffleIcon from '@material-ui/icons/Shuffle';
 import SyncAltIcon from '@material-ui/icons/SyncAlt';
-import FastForwardIcon from '@material-ui/icons/FastForward';
+//import FastForwardIcon from '@material-ui/icons/FastForward';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import PictureInPictureAltIcon from '@material-ui/icons/PictureInPictureAlt';
-import playlist from './playlist';
-import youtubeplaylist from './youtubeplaylist';
+import jpplaylist from './playlist';
+import chiplaylist from './chiplaylist';
+//import youtubeplaylist from './youtubeplaylist';
 import './reset.css'
 import './defaults.css'
 import './range.css'
 import './App.css'
 import ReactPlayer from './ReactPlayer'
+// bootstrap ag-grid-community load-script
 //import axios from 'axios';
 //import Duration from './Duration'
+const playlist= jpplaylist;
+chiplaylist.map((index, key) => {
+  playlist.push({ label:index.label,options:index.options })
+})
+
 const useStyles = makeStyles(theme => ({
   fab: {
     margin: theme.spacing(1),
@@ -231,8 +238,6 @@ class App extends Component {
   }
 
   handleUpdatePlaylist(value) {
-    console.log(value)
-    console.log(playlist)
     const tmpData = this.state.rowData;
     playlist.map((index, key) => {
       index.options.map((innerindex, innerkey) => {
@@ -296,10 +301,10 @@ class App extends Component {
       axios.get('https://noembed.com/embed?url=' + url)
         .then(response => this.setState({ title: response.data.title }))
     }*/
-    let optionplaylist = []
+    /*let optionplaylist = []
     youtubeplaylist.map((index, key) => {
       optionplaylist.push({ value: index.source, label: index.list })
-    })
+    })*/
     return (
       <div className='app' >
         <section className='section'>
@@ -358,7 +363,7 @@ class App extends Component {
           <Table id="table" borderless>
             <thread>
               <tr>
-                <th>Seek</th>
+                <th>Progress</th>
                 <td>
                   <CustomInput type="range" min={0} max={1} step='any'
                     value={played}
@@ -374,10 +379,10 @@ class App extends Component {
                   <CustomInput type="range" min={0} max={1} step='any' value={volume} onChange={this.handleVolumeChange} />
                 </td>
               </tr>
-              <tr>
+              {/*<tr>
                 <th>Played</th>
                 <td><Progress color="warning" max={1} value={played} /></td>
-              </tr>
+              </tr>*/}
               <tr>
                 <th>Playlist</th>
                 <td>
@@ -398,7 +403,6 @@ class App extends Component {
                     >
                     </AgGridReact>
                   </div>
-
                 </td>
               </tr>
               <Collapse isOpen={this.state.collapse}>
@@ -407,7 +411,7 @@ class App extends Component {
                     <Button onClick={this.onRemoveSelected.bind(this)}>Remove Selected</Button>
                     <Button outline color="success"
                       onClick={() => this.setState({ url: this.state.rowData[0].source })}>
-                      Load
+                      Play
                     </Button>
                   </td>
                 </tr>
@@ -421,7 +425,7 @@ class App extends Component {
                     </Select>
                   </td>
                 </tr>
-                <tr>
+                {/*<tr>
                   <th>YouTube Playlist</th>
                   <td className="selecttd">
                     <Select
@@ -436,13 +440,13 @@ class App extends Component {
                   <td>
                     <div>
                       <Input ref={input => { this.urlInput = input }} type="text" placeholder='Enter URL' size="40" />
-                      <Button outline color="success"
+                      <Button id="customurl" outline color="success"
                         onClick={() => this.setState({ url: this.urlInput.value })}>
                         Load
                     </Button>
                     </div>
                   </td>
-                </tr>
+                </tr>*/}
               </Collapse>
             </thread>
           </Table>
