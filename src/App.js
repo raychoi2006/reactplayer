@@ -376,10 +376,10 @@ class App extends Component {
               onProgress={this.handleProgress}
               onDuration={this.handleDuration}
             />
-          </div>
+          
           <br />
           <Row>
-            <Col md={{ size: 6, offset: 3 }}>
+            <Col align="center">
               <Button onClick={this.handleStop} color="info"><StopIcon /></Button>
               <Button onClick={this.handlePlayPause} color="warning">{playing ? <PauseIcon /> : <PlayArrowIcon />}</Button>
               <Button onClick={this.handleNext} color="danger"><SkipNextIcon /></Button>
@@ -387,7 +387,7 @@ class App extends Component {
                 value={(this.state.playbackRate === 2) ? 1 : ((this.state.playbackRate === 1) ? 1.5 : 2)}
               >
                 <FastForwardIcon />
-    </Button>*/}
+      </Button>*/}
               <Button onClick={this.handleRandom}>{random?<ShuffleIcon />:<SyncAltIcon />}</Button>
               <Button onClick={this.handleToggleMuted}>{muted ? <VolumeOffIcon /> : <VolumeUpIcon />}</Button>
               <Button onClick={this.handleToggleLoop}>{loop ? <SyncDisabledIcon /> : <SyncIcon />}</Button>
@@ -502,6 +502,7 @@ class App extends Component {
              
             </ModalBody>
           </Modal>
+          </div>
         </section>
       </div >
     );
