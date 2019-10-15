@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { CustomInput, Button, Label, Input, Table, Progress, Collapse, Row, Col } from 'reactstrap';
+import { CustomInput, Button, Label, Input, Table, Progress, Collapse, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter, } from 'reactstrap';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
@@ -78,6 +78,7 @@ class App extends Component {
       collapse: true,
       dark: false,
       random: false,
+      showModal: false,
       columnDefs: [
         {
           headerName: "Title", field: "next"
@@ -94,6 +95,7 @@ class App extends Component {
     };
     this.handleToggleControls = this.handleToggleControls.bind(this);
     this.handleUpdatePlaylist = this.handleUpdatePlaylist.bind(this);
+    this.handleToggleModal = this.handleToggleModal.bind(this);
   }
 
   onGridReady = params => {
@@ -120,6 +122,9 @@ class App extends Component {
 
   handleStop = () => {
     this.setState({ url: null, playing: false, title: null })
+    const tmp = []
+    this.setState({ rowData: tmp })
+    this.gridApi.setRowData(this.state.rowData)
   }
 
   handleNext = () => {
@@ -156,6 +161,10 @@ class App extends Component {
 
   handleToggleMuted = () => {
     this.setState({ muted: !this.state.muted })
+  }
+
+  handleToggleModal() {
+    this.setState({ showModal: !this.state.showModal })
   }
 
   handleSetPlaybackRate = e => {
@@ -220,16 +229,27 @@ class App extends Component {
         this.setState({ rowData: tmp })
         this.gridApi.setRowData(this.state.rowData)
         if (this.state.rowData.length !== 0)
-          this.setState({ url: this.state.rowData[0].source })
-          else if (this.state.random){
-            //random draw and play
-            const randplaylist = Math.floor(Math.random() * (Object.keys(playlist).length));
-            const randsong = Math.floor(Math.random() * (playlist[randplaylist].options.length));
-            tmp.push({ artist: playlist[randplaylist].options[randsong].artist, next: playlist[randplaylist].options[randsong].label, source: playlist[randplaylist].options[randsong].url })
+          if (this.state.random){
+            const randplaylistonrow = Math.floor(Math.random() * (Object.keys(tmp).length));
+            const randselected = tmp.splice(randplaylistonrow, 1)
+            console.log(randselected)
+            tmp.splice(0,0,{artist:randselected[0].artist,next:randselected[0].next,source:randselected[0].source})
+            console.log(tmp)
             this.setState({ rowData: tmp })
             this.gridApi.setRowData(this.state.rowData)
             this.setState({ url: this.state.rowData[0].source })
           }
+          else
+          this.setState({ url: this.state.rowData[0].source })
+        else if (this.state.random) {
+          //random draw and play
+          const randplaylist = Math.floor(Math.random() * (Object.keys(playlist).length));
+          const randsong = Math.floor(Math.random() * (playlist[randplaylist].options.length));
+          tmp.push({ artist: playlist[randplaylist].options[randsong].artist, next: playlist[randplaylist].options[randsong].label, source: playlist[randplaylist].options[randsong].url })
+          this.setState({ rowData: tmp })
+          this.gridApi.setRowData(this.state.rowData)
+          this.setState({ url: this.state.rowData[0].source })
+        }
       }
   }
 
@@ -246,10 +266,8 @@ class App extends Component {
           tmpData.push({ artist: innerindex.artist, next: innerindex.label, source: innerindex.url })
       })
     })
-    console.log(tmpData)
     this.setState({ rowData: tmpData })
     this.gridApi.setRowData(this.state.rowData);
-    console.log(this.state.rowData)
   }
 
   handleRandom = () =>{
@@ -258,15 +276,15 @@ class App extends Component {
       const tmp = this.state.rowData
       console.log("run random")
       console.log(this.state.playing)
-      if(!this.state.playing || (tmp === undefined || tmp.length == 0)){
-      //random draw and play
-      const randplaylist = Math.floor(Math.random() * (Object.keys(playlist).length));
-      const randsong = Math.floor(Math.random() * (playlist[randplaylist].options.length));
-      //update grid and load
-      tmp.push({ artist: playlist[randplaylist].options[randsong].artist, next: playlist[randplaylist].options[randsong].label, source: playlist[randplaylist].options[randsong].url })
-      this.setState({ rowData: tmp })
-      this.gridApi.setRowData(this.state.rowData)
-      this.setState({ url: this.state.rowData[0].source })
+      if (!this.state.playing || (tmp === undefined || tmp.length == 0)) {
+        //random draw and play
+        const randplaylist = Math.floor(Math.random() * (Object.keys(playlist).length));
+        const randsong = Math.floor(Math.random() * (playlist[randplaylist].options.length));
+        //update grid and load
+        tmp.push({ artist: playlist[randplaylist].options[randsong].artist, next: playlist[randplaylist].options[randsong].label, source: playlist[randplaylist].options[randsong].url })
+        this.setState({ rowData: tmp })
+        this.gridApi.setRowData(this.state.rowData)
+        this.setState({ url: this.state.rowData[0].source })
       }
     }
   }
@@ -306,6 +324,27 @@ class App extends Component {
     youtubeplaylist.map((index, key) => {
       optionplaylist.push({ value: index.source, label: index.list })
     })*/
+    let cusComponents = {};
+    const MenuList = props => {
+      return (
+        <components.MenuList {...props}>
+          {props.children}
+          <a href="#"
+            style={menuHeaderStyle}
+            onClick={(e) => { this.handleToggleModal(); e.preventDefault(); e.stopPropagation(); }}>
+            Custom Add</a>
+        </components.MenuList>
+      );
+    };
+    cusComponents = { components: { MenuList } };
+    const menuHeaderStyle = {
+      padding: '4px 12px',
+      display: 'flex',
+      margin: '0px auto',
+      background: "#4dbd74",
+      color: 'white',
+    };
+
     return (
       <div className='app' >
         <section className='section'>
@@ -411,7 +450,7 @@ class App extends Component {
                   <th></th><td>
                     <Button onClick={this.onRemoveSelected.bind(this)}>Remove Selected</Button>
                     <Button outline color="success"
-                      onClick={() => this.setState({ url: this.state.rowData[0].source })}>
+                      onClick={() => this.setState({ url: this.state.rowData[0].source, playing: true })}>
                       Play
                     </Button>
                   </td>
@@ -420,6 +459,7 @@ class App extends Component {
                   <th>Add to Playlist</th>
                   <td className="selecttd">
                     <Select
+                      {...cusComponents}
                       options={playlist}
                       onChange={(e) => this.handleUpdatePlaylist(e)}
                     >
@@ -456,6 +496,12 @@ class App extends Component {
               <ExpandLessIcon className={classes.expand_less} /> : <ExpandMoreIcon className={classes.expand_more} />}
             {(this.state.collapse) ? 'Hide' : 'Details'}
           </Fab>
+          <Modal isOpen={this.state.showModal} toggle={this.handleToggleModal}>
+            <ModalHeader toggle={this.handleToggleModal}>Playlist Menu</ModalHeader>
+            <ModalBody >
+             
+            </ModalBody>
+          </Modal>
         </section>
       </div >
     );
