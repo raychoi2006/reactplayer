@@ -376,7 +376,7 @@ class App extends Component {
               onProgress={this.handleProgress}
               onDuration={this.handleDuration}
             />
-          
+          </div>
           <br />
           <Row>
             <Col align="center">
@@ -502,7 +502,7 @@ class App extends Component {
              
             </ModalBody>
           </Modal>
-          </div>
+          
         </section>
       </div >
     );
