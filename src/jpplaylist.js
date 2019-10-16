@@ -589,7 +589,7 @@ export default [
 	artist:"今泉佑唯",
 	label:"日が昇るまで",
 	value:"欅坂46 7thシングル 日が昇るまで 今泉佑唯",
-	url:"https://www.youtube.com/watch?v=DnrgxgB464U",
+	url:"https://www.youtube.com/watch?v=UIM_FCVV-GA",
   },
   ]
 },
@@ -629,7 +629,7 @@ export default [
 	artist:"今泉佑唯",
 	label:"再生する細胞",
 	value:"欅坂46 5thシングル 再生する細胞 今泉佑唯",
-	url:"https://www.youtube.com/watch?v=DnrgxgB464U",
+	url:"https://www.youtube.com/watch?v=0V7JYvg5kho",
   },
   ]
 },
