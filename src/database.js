@@ -663,7 +663,7 @@ export default [
 		artist:"欅坂46",
 		label:"不協和音",
 		value:"欅坂46 4thシングル 不協和音",
-		url:"https://www.youtube.com/watch?v=Q2IC3ynpoLE",
+		url:"https://www.youtube.com/watch?v=5b0qb4RoS8U",
 	  },
 	  {
 		artist:"けやき坂46",
@@ -1286,6 +1286,12 @@ export default [
 		label:"算什麼男人",
 		value:"周杰倫 算什麼男人",
 		url:"https://www.youtube.com/watch?v=v489sYYjtHI",
+	  },
+	  {
+		artist:"周杰倫",
+		label:"說好不哭",
+		value:"周杰倫 說好不哭",
+		url:"https://www.youtube.com/watch?v=HK7SPnGSxLM",
 	  },
 	  ]
 	},
