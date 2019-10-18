@@ -25,6 +25,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import PictureInPictureAltIcon from '@material-ui/icons/PictureInPictureAlt';
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import jpplaylist from './jpplaylist';
 import chiplaylist from './chiplaylist';
 import chianimateplaylist from './chianimateplaylist';
@@ -48,6 +49,10 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 //import youtubeplaylist from './youtubeplaylist';
+import Grid from '@material-ui/core/Grid';
+import Slider from '@material-ui/core/Slider';
+import VolumeDown from '@material-ui/icons/VolumeDown';
+
 import './reset.css'
 import './defaults.css'
 import './range.css'
@@ -96,6 +101,9 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
+  root: {
+    width: 200,
+  },
 }));
 
 class App extends Component {
@@ -122,14 +130,25 @@ class App extends Component {
       playingTitle: '',
       columnDefs: [
         {
-          headerName: "Title", field: "next"
-        },
-        {
-          headerName: "Artist", field: "artist"
-        },
-        {
-          headerName: "Source", field: "source"
-        },
+          headerName: "Playlist",
+          children: [
+            /*{
+              headerName: "id", field: "delete", width: 40,
+              cellRenderer: 'buttonRenderer',
+            },
+            https://www.ag-grid.com/javascript-grid-cell-rendering-components/
+            */
+            {
+              headerName: "Title", field: "next", rowDrag: true
+            },
+            {
+              headerName: "Artist", field: "artist"
+            },
+            {
+              headerName: "Source", field: "source"
+            },
+          ],
+        }
       ],
       rowData: [],
       rowSelection: "multiple"
@@ -173,6 +192,10 @@ class App extends Component {
     this.player.seekTo(0.99999999)
   }
 
+  handleBack = () => {
+    this.player.seekTo(0.00000001)
+  }
+
   handleToggleControls() {
     this.setState(state => ({ collapse: !state.collapse }));
   }
@@ -186,8 +209,8 @@ class App extends Component {
     document.getElementById("player-wrapper").style.display === "none" ? document.getElementById("player-wrapper").style.display = "block" : document.getElementById("player-wrapper").style.display = "none"
   }
 
-  handleVolumeChange = e => {
-    this.setState({ volume: parseFloat(e.target.value) })
+  handleVolumeChange = (event, newValue) => {
+    this.setState({ volume: newValue / 100 })
   }
 
   handleDarkMode = () => {
@@ -213,24 +236,10 @@ class App extends Component {
     this.setState({ playbackRate: parseFloat(e.target.value) })
   }
 
-  /*handleTogglePIP = () => {
-    this.setState({ pip: !this.state.pip })
-  }*/
-
   handlePlay = () => {
     console.log('onPlay')
     this.setState({ playing: true })
   }
-
-  /*handleEnablePIP = () => {
-    console.log('onEnablePIP')
-    this.setState({ pip: true })
-  }
-
-  handleDisablePIP = () => {
-    console.log('onDisablePIP')
-    this.setState({ pip: false })
-  }*/
 
   handlePause = () => {
     console.log('onPause')
@@ -240,6 +249,7 @@ class App extends Component {
   handleSeekMouseDown = e => {
     this.setState({ seeking: true })
   }
+
 
   handleSeekChange = e => {
     this.setState({ played: parseFloat(e.target.value) })
@@ -354,6 +364,20 @@ class App extends Component {
     console.log(this.state.rowData)
   }
 
+  /*handleTogglePIP = () => {
+        this.setState({ pip: !this.state.pip })
+      }*/
+
+  /*handleEnablePIP = () => {
+    console.log('onEnablePIP')
+    this.setState({ pip: true })
+  }
+  
+  handleDisablePIP = () => {
+    console.log('onDisablePIP')
+    this.setState({ pip: false })
+  }*/
+
   /*renderLoadButton = (url, label) => {
     return (
       <Button outline onClick={() => this.load(url)}>
@@ -373,10 +397,6 @@ class App extends Component {
       axios.get('https://noembed.com/embed?url=' + url)
         .then(response => this.setState({ title: response.data.title }))
     }*/
-    /*let optionplaylist = []
-    youtubeplaylist.map((index, key) => {
-      optionplaylist.push({ value: index.source, label: index.list })
-    })*/
     let databaseplaylist = []
     database.map((index, key) => {
       index.options.map((song, number) => {
@@ -439,20 +459,20 @@ class App extends Component {
           <br />
           <Row>
             <Col align="center">
-              <Button onClick={this.handleStop} color="info"><StopIcon /></Button>
+              <Button onClick={this.handleBack} color="primary"><SkipPreviousIcon /></Button>
               <Button onClick={this.handlePlayPause} color="warning">{playing ? <PauseIcon /> : <PlayArrowIcon />}</Button>
-              <Button onClick={this.handleNext} color="danger"><SkipNextIcon /></Button>
+              <Button onClick={this.handleNext} color="primary"><SkipNextIcon /></Button>
+              <Button onClick={this.handleStop} color="danger"><StopIcon /></Button>
               {/*<Button onClick={this.handleSetPlaybackRate} color="primary"
                 value={(this.state.playbackRate === 2) ? 1 : ((this.state.playbackRate === 1) ? 1.5 : 2)}
               >
                 <FastForwardIcon />
       </Button>*/}
               <Button onClick={this.handleRandom}>{random ? <ShuffleIcon /> : <SyncAltIcon />}</Button>
-              <Button onClick={this.handleToggleMuted}>{muted ? <VolumeOffIcon /> : <VolumeUpIcon />}</Button>
+              {/* <Button onClick={this.handleToggleMuted}>{muted ? <VolumeOffIcon /> : <VolumeUpIcon />}</Button>*/}
               <Button onClick={this.handleToggleLoop}>{loop ? <SyncDisabledIcon /> : <SyncIcon />}</Button>
               <Button onClick={this.handleToggleHide}>{hide ? <DesktopAccessDisabledIcon /> : <DesktopWindowsIcon />}</Button>
               <Button onClick={this.handleDarkMode} >{dark ? <FeaturedPlayListIcon /> : <PictureInPictureAltIcon />}</Button>
-
               {//ReactPlayer.canEnablePIP(url) &&
                 //<Button onClick={this.handleTogglePIP}>{pip ? 'Disable PiP' : 'Enable PiP'}</Button>
               }
@@ -466,30 +486,41 @@ class App extends Component {
                 <td><Label>{this.state.playingTitle}</Label></td>
               </tr>
               <tr>
-                <th>Progress</th>
+                <th>Volume</th>
                 <td>
-                  <CustomInput type="range" min={0} max={1} step='any'
-                    value={played}
-                    onMouseDown={this.handleSeekMouseDown}
-                    onChange={this.handleSeekChange}
-                    onMouseUp={this.handleSeekMouseUp}
-                  />
+                  {/*<CustomInput type="range" min={0} max={1} step='any' value={volume} onChange={this.handleVolumeChange} />*/}
+                  <Grid container spacing={2}>
+                    <Grid item>
+                      <VolumeDown />
+                    </Grid>
+                    <Grid item xs>
+                      <Slider value={volume * 100} onChange={this.handleVolumeChange} />
+                    </Grid>
+                    <Grid item>
+                      <VolumeUpIcon />
+                    </Grid>
+                  </Grid>
                 </td>
               </tr>
               <tr>
-                <th>Volume</th>
-                <td>
-                  <CustomInput type="range" min={0} max={1} step='any' value={volume} onChange={this.handleVolumeChange} />
-                </td>
-              </tr>
-              {/*<tr>
-                <th>Played</th>
+                <th>Time</th>
                 <td><Progress color="warning" max={1} value={played} /></td>
-              </tr>*/}
+              </tr>
               <Collapse isOpen={this.state.collapse}>
-                <tr>
-                  <th>Playlist</th>
+                {/*<tr>
+                  <th>Jump</th>
                   <td>
+                    <CustomInput type="range" min={0} max={1} step='any'
+                      value={played}
+                      onMouseDown={this.handleSeekMouseDown}
+                      onChange={this.handleSeekChange}
+                      onMouseUp={this.handleSeekMouseUp}
+                    />
+                  </td>
+                </tr>*/}
+                <tr >
+
+                  <th >
                     <div
                       id="playlistGrid"
                       className="ag-theme-balham"
@@ -498,6 +529,14 @@ class App extends Component {
                         width: '100%'
                       }}
                     >
+                      <Select
+                        placeholder="Find videos and add to list"
+                        className="darkselect"
+                        {...cusComponents}
+                        options={playlist}
+                        onChange={(e) => this.handleUpdatePlaylist(e)}
+                      >
+                      </Select>
                       <AgGridReact
                         columnDefs={this.state.columnDefs}
                         rowData={this.state.rowData}
@@ -506,39 +545,15 @@ class App extends Component {
                         rowSelection={this.state.rowSelection}
                       >
                       </AgGridReact>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th></th><td>
-                    <Button onClick={this.onRemoveSelected.bind(this)}>Remove Selected</Button>
-                    <Button outline color="success"
-                      onClick={() => this.setState({ url: this.state.rowData[0].source, playing: true, playingTitle: this.state.rowData[0].next })}>
-                      Play
+                      <Button onClick={this.onRemoveSelected.bind(this)}>Remove Selected</Button>
+                      <Button outline color="success"
+                        onClick={() => this.setState({ url: this.state.rowData[0].source, playing: true, playingTitle: this.state.rowData[0].next })}>
+                        Play
                     </Button>
-                  </td>
+                    </div>
+                  </th>
                 </tr>
-                <tr>
-                  <th>Add to Playlist</th>
-                  <td className="selecttd">
-                    <Select
-                      {...cusComponents}
-                      options={playlist}
-                      onChange={(e) => this.handleUpdatePlaylist(e)}
-                    >
-                    </Select>
-                  </td>
-                </tr>
-                {/*<tr>
-                  <th>YouTube Playlist</th>
-                  <td className="selecttd">
-                    <Select
-                      isSearchable
-                      options={optionplaylist}
-                      onChange={(e) => this.load(e.value)}
-                    />
-                  </td>
-                </tr>
+                {/*
                 <tr>
                   <th>Custom URL</th>
                   <td>
