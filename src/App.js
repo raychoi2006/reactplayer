@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { CustomInput, Button, Label, Input, Table, Progress, Collapse, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter, } from 'reactstrap';
+import React, { Component , useState } from 'react'
+import { CustomInput, Button, Label, Input, Table, Progress, Collapse, Row, Col, Modal, ModalHeader, ModalBody, TabContent, TabPane, Nav, NavItem, NavLink ,ModalFooter, } from 'reactstrap';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
@@ -29,6 +29,7 @@ import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import jpplaylist from './jpplaylist';
 import chiplaylist from './chiplaylist';
 import chianimateplaylist from './chianimateplaylist';
+//import testplaylist from './testplaylist';
 import database from './database';
 import { forwardRef } from 'react';
 import MaterialTable from 'material-table';
@@ -52,7 +53,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 import VolumeDown from '@material-ui/icons/VolumeDown';
-
+import classnames from 'classnames';
 import './reset.css'
 import './defaults.css'
 import './range.css'
@@ -128,6 +129,11 @@ class App extends Component {
       random: false,
       showModal: false,
       playingTitle: '',
+      activeTab: '1',
+      AblumSelect:'',
+      ArtistSelect:'',
+      AddName:'',
+      AddSource:'',
       columnDefs: [
         {
           headerName: "Playlist",
@@ -385,14 +391,53 @@ class App extends Component {
       </Button>
     )
   }*/
+  setActiveTab(tab){
+    this.setState({ activeTab : tab })
+  }
 
   ref = player => {
     this.player = player
   }
 
+  handleAddAlbumSelect(e){
+     this.setState({ AblumSelect : e.value })
+  }
+
+  handleAddArtistSelect(e){
+    this.setState({ ArtistSelect : e.value })
+ }
+
+  handleAddName(e){
+    this.setState({ AddName : e.target.value })
+}
+
+  handleAddSource(e){
+    this.setState({ AddSource : e.target.value })
+}
+
+  handleAddDatabase = () =>{
+    let newsong={
+      label: this.state.AblumSelect,
+      options: [
+        {
+          artist: this.state.ArtistSelect,
+          label: this.state.AddName,
+          value: this.state.AblumSelect + ' '+this.state.AddName+' '+ this.state.ArtistSelect,
+          url: this.state.AddSource,
+        },
+      ]
+    }
+    console.log(newsong)
+    /*testplaylist.push(newsong)
+    console.log(typeof testplaylist)
+    var writeJson = require('write-json'); 
+    writeJson.sync('testplaylist.json', {abc: 'xyz'});*/
+    this.handleToggleModal()
+  }
+
   render() {
     const classes = useStyles;
-    const { url, playing, controls, light, volume, muted, loop, hide, played, loaded, duration, playbackRate, pip, title, dark, random, } = this.state
+    const { url, playing, controls, light, volume, muted, loop, hide, played, loaded, duration, playbackRate, pip, title, dark, random, activeTab,ArtistSelect,AblumSelect} = this.state
     /*if (url !== null && playing) {
       axios.get('https://noembed.com/embed?url=' + url)
         .then(response => this.setState({ title: response.data.title }))
@@ -402,6 +447,22 @@ class App extends Component {
       index.options.map((song, number) => {
         databaseplaylist.push({ label: song.label, artist: song.artist, album: index.label, url: song.url })
       })
+    })
+    let filterartistlist = []
+    database.map((index,key)=>{
+      index.options.map((song,number)=>{
+        filterartistlist.push({label:song.artist,value:song.artist})
+      })
+    })
+    let artistlist = filterartistlist.reduce((unique, o) => {
+      if(!unique.some(obj => obj.label === o.label && obj.value === o.value)) {
+        unique.push(o);
+      }
+      return unique;
+  },[])
+    let albumlist = []
+    database.map((index,key)=>{
+      albumlist.push({label:index.label,value:index.label})
     })
     let cusComponents = {};
     const MenuList = props => {
@@ -578,6 +639,26 @@ class App extends Component {
             <Modal isOpen={this.state.showModal} toggle={this.handleToggleModal} >
               <ModalHeader toggle={this.handleToggleModal}>Playlist Menu</ModalHeader>
               <ModalBody>
+              <Nav tabs>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '1' })}
+            onClick={() => { this.setActiveTab('1'); }}
+          >
+            Adding to List
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '2' })}
+            onClick={() => { this.setActiveTab('2'); }}
+          >
+            Adding to database
+          </NavLink>
+        </NavItem>
+      </Nav>
+              <TabContent activeTab={activeTab}>
+              <TabPane tabId="1">
                 <MaterialTable
                   title="Song database"
                   data={databaseplaylist}
@@ -607,6 +688,60 @@ class App extends Component {
                     }
                   ]}
                 />
+                </TabPane>
+                <TabPane tabId="2">
+                  <Table>
+                    <tr>
+                    <th>
+                    <Label>Name</Label>
+                    </th>
+                    <td>
+                    <Input type="text" onChange={(e) =>this.handleAddName(e)}></Input>
+                    </td>
+                    </tr>
+                    <tr>
+                    <th>
+                    <Label>Artist</Label>
+                    </th>
+                    <td>
+                    <Select
+                    isSearchable
+                    selected={ArtistSelect}
+                    onChange={(e) =>this.handleAddArtistSelect(e)}
+                    options={artistlist}
+                    ></Select>
+                    </td>
+                    </tr>
+                    <tr>
+                    <th>
+                    <Label>Album</Label>
+                    </th>
+                    <td>
+                    <Select
+                    isSearchable
+                    selected={AblumSelect}
+                    onChange={(e) =>this.handleAddAlbumSelect(e)}
+                    options={albumlist}
+                    ></Select>
+                    </td>
+                    </tr>
+                    <tr>
+                    <th>
+                    <Label>Source</Label>
+                    </th>
+                    <td>
+                    <Input type="text" onChange={(e) =>this.handleAddSource(e)}></Input>
+                    </td>
+                    </tr>
+                    <tr>
+                  <Button outline color="success"
+                        onClick={this.handleAddDatabase}>
+                        Add
+                    </Button>
+                    </tr>
+                  </Table>
+                  </TabPane>
+                  </TabContent>
               </ModalBody>
             </Modal>
           </div>
@@ -615,5 +750,5 @@ class App extends Component {
     );
   }
 }
-
+//export {testplaylist}
 export default App

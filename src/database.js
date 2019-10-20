@@ -180,6 +180,12 @@ export default [
 				value: "乃木坂46 3rdアルバム Rewindあの日",
 				url: "https://www.youtube.com/watch?v=DcwQd0vvwvA",
 			},
+			{
+				artist: "乃木坂46",
+				label: "流星ディスコティック",
+				value: "乃木坂46 3rdアルバム 流星ディスコティック",
+				url: "https://www.youtube.com/watch?v=YuigBaMR9d0",
+			},
 		],
 	},
 	{
@@ -346,6 +352,12 @@ export default [
 				label: "太陽ノック",
 				value: "乃木坂46 12thシングル 太陽ノック",
 				url: "https://www.youtube.com/watch?v=6C4pQ0nO2ko",
+			},
+			{
+				artist: "乃木坂46",
+				label: "魚たちのLove Song",
+				value: "乃木坂46 12thシングル 魚たちのLove Song",
+				url: "https://www.youtube.com/watch?v=ezOtg_3Znk8",
 			},
 			{
 				artist: "乃木坂46",
