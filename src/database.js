@@ -70,6 +70,17 @@ export default [
 		],
 	},
 	{
+		label: "乃木坂46 4thアルバム 今が思い出になるまで",
+		options: [
+			{
+				artist: "乃木坂46",
+				label: "もし君がいなければ",
+				value: "乃木坂46 4thアルバム 今が思い出になるまで もし君がいなければ 衛藤美彩",
+				url: "https://www.youtube.com/watch?v=8ICidqrZTAE",
+			},
+		]
+	},
+	{
 		label: "乃木坂46 22thシングル 帰り道は遠回りしたくなる",
 		options: [
 			{
@@ -201,6 +212,18 @@ export default [
 				value: "乃木坂46 アンダー1stアルバム 誰よりそばにいたい",
 				url: "https://www.youtube.com/watch?v=dJLMqyFWt9E"
 			},
+			{
+				artist: "乃木坂46",
+				label: "自分のこと",
+				value: "乃木坂46 アンダー1stアルバム 自分のこと　中元日芽香",
+				url: "https://www.youtube.com/watch?v=4wOBDS7gqaU"
+			},
+			{
+				artist: "乃木坂46",
+				label: "その女",
+				value: "乃木坂46 アンダー1stアルバム その女",
+				url: "https://www.youtube.com/watch?v=ufA1ZCow0Pc"
+			},
 		],
 	},
 	{
@@ -299,6 +322,12 @@ export default [
 				label: "流星ディスコティック",
 				value: "乃木坂46 3rdアルバム 流星ディスコティック",
 				url: "https://www.youtube.com/watch?v=YuigBaMR9d0",
+			},
+			{
+				artist: "乃木坂46",
+				label: "設定温度",
+				value: "乃木坂46 3rdアルバム 設定温度",
+				url: "https://www.youtube.com/watch?v=LPGpmoM2pnA",
 			},
 		],
 	},
@@ -411,6 +440,30 @@ export default [
 				value: "乃木坂46 15thシングル 白米様",
 				url: "https://www.youtube.com/watch?v=XQSrfHywSUI"
 			},
+			{
+				artist: "乃木坂46",
+				label: "僕だけの光",
+				value: "乃木坂46 15thシングル 僕だけの光",
+				url: "https://www.youtube.com/watch?v=XSYSIJ5Mb3E"
+			},
+			{
+				artist: "乃木坂46",
+				label: "オフショアガール",
+				value: "乃木坂46 15thシングル オフショアガール",
+				url: "https://www.youtube.com/watch?v=DX3XwYQ1P9c"
+			},
+			{
+				artist: "乃木坂46",
+				label: "命の真実 ミュージカル「林檎売りとカメムシ」",
+				value: "乃木坂46 15thシングル 命の真実 ミュージカル「林檎売りとカメムシ」",
+				url: "https://www.youtube.com/watch?v=e0VFj1XQ9AE"
+			},
+			{
+				artist: "乃木坂46",
+				label: "行くあてのない僕たち",
+				value: "乃木坂46 15thシングル 行くあてのない僕たち",
+				url: "https://www.youtube.com/watch?v=jvixffU7rnY"
+			},
 		],
 	},
 	{
@@ -463,6 +516,24 @@ export default [
 				value: "乃木坂46 14thシングル 急斜面",
 				url: "https://www.youtube.com/watch?v=ET9XF4OSo7E"
 			},
+			{
+				artist: "乃木坂46",
+				label: "強がる蕾",
+				value: "乃木坂46 14thシングル 強がる蕾",
+				url: "https://www.youtube.com/watch?v=vS3EkKQ4rbk"
+			},
+			{
+				artist: "乃木坂46",
+				label: "不等号",
+				value: "乃木坂46 14thシングル 不等号",
+				url: "https://www.youtube.com/watch?v=8NQmbVuRM4Q"
+			},
+			{
+				artist: "乃木坂46",
+				label: "遥かなるブータン",
+				value: "乃木坂46 14thシングル 遥かなるブータン",
+				url: "https://www.youtube.com/watch?v=wFMsINYO_Ik"
+			},
 		],
 	},
 	{
@@ -491,6 +562,12 @@ export default [
 				label: "悲しみの忘れ方",
 				value: "乃木坂46 13thシングル 悲しみの忘れ方",
 				url: "https://www.youtube.com/watch?v=OjzBBUm2pG0",
+			},
+			{
+				artist: "乃木坂46",
+				label: "大人への近道",
+				value: "乃木坂46 13thシングル 大人への近道",
+				url: "https://www.youtube.com/watch?v=77HwHj-JZSU",
 			},
 			{
 				artist: "乃木坂46",
@@ -535,6 +612,12 @@ export default [
 			},
 			{
 				artist: "乃木坂46",
+				label: "制服を脱いでサヨナラを…",
+				value: "乃木坂46 12thシングル 制服を脱いでサヨナラを…",
+				url: "https://www.youtube.com/watch?v=D5O1mFtmtPQ",
+			},
+			{
+				artist: "乃木坂46",
 				label: "もう少しの夢",
 				value: "乃木坂46 12thシングル もう少しの夢 西野七瀬",
 				url: "https://www.youtube.com/watch?v=BEOOaDYpSgs",
@@ -562,7 +645,36 @@ export default [
 				value: "乃木坂46 11thシングル あらかじめ語られるロマンス",
 				url: "https://www.youtube.com/watch?v=hcD6eZJUc_0",
 			},
+			{
+				artist: "乃木坂46",
+				label: "ごめんね ずっと…",
+				value: "乃木坂46 11thシングル ごめんね ずっと…",
+				url: "https://www.youtube.com/watch?v=HzXGP5IGbig",
+			},
+			{
+				artist: "乃木坂46",
+				label: "立ち直り中",
+				value: "乃木坂46 11thシングル 立ち直り中",
+				url: "https://www.youtube.com/watch?v=GtpArRY_MfY",
+			},
+			{
+				artist: "乃木坂46",
+				label: "ボーダー",
+				value: "乃木坂46 11thシングル ボーダー",
+				url: "https://www.youtube.com/watch?v=U898kyJ0bts",
+			},
 		],
+	},
+	{
+		label: "乃木坂46 1stアルバム 透明な色",
+		options: [
+			{
+				artist: "乃木坂46",
+				label: "ひとりよがり",
+				value: "乃木坂46 1stアルバム ひとりよがり 西野七瀬",
+				url: "https://www.youtube.com/watch?v=dqpdy1lhNEw",
+			},
+		]
 	},
 	{
 		label: "乃木坂46 10thシングル 何度目の青空か?",
@@ -579,6 +691,30 @@ export default [
 				value: "乃木坂46 10thシングル あの日 僕は咄嗟に嘘をついた",
 				url: "https://www.youtube.com/watch?v=Q_QFfjDGNIY",
 			},
+			{
+				artist: "乃木坂46",
+				label: "遠回りの愛情",
+				value: "乃木坂46 10thシングル 遠回りの愛情",
+				url: "https://www.youtube.com/watch?v=NN-lEtVf2Os",
+			},
+			{
+				artist: "乃木坂46",
+				label: "転がった鐘を鳴らせ!",
+				value: "乃木坂46 10thシングル 転がった鐘を鳴らせ!",
+				url: "https://www.youtube.com/watch?v=Qzj8cUXFwJE",
+			},
+			{
+				artist: "乃木坂46",
+				label: "私、起きる。",
+				value: "乃木坂46 10thシングル 私、起きる。",
+				url: "https://www.youtube.com/watch?v=JCz1NnsmoMI",
+			},
+			{
+				artist: "乃木坂46",
+				label: "Tender days",
+				value: "乃木坂46 10thシングル Tender days",
+				url: "https://www.youtube.com/watch?v=52m4Uw4m8ko",
+			},
 		],
 	},
 	{
@@ -589,6 +725,36 @@ export default [
 				label: "夏のFree&Easy",
 				value: "乃木坂46 9thシングル 夏のFree&Easy",
 				url: "https://www.youtube.com/watch?v=mZfMSWh58fk",
+			},
+			{
+				artist: "乃木坂46",
+				label: "その先の出口",
+				value: "乃木坂46 9thシングル その先の出口",
+				url: "https://www.youtube.com/watch?v=hUReavvCKpg",
+			},
+			{
+				artist: "乃木坂46",
+				label: "何もできずにそばにいる",
+				value: "乃木坂46 9thシングル 何もできずにそばにいる",
+				url: "https://www.youtube.com/watch?v=a-jmlsredbY",
+			},
+			{
+				artist: "乃木坂46",
+				label: "無口なライオン",
+				value: "乃木坂46 9thシングル 無口なライオン",
+				url: "https://www.youtube.com/watch?v=Ff8LIX80gxc",
+			},
+			{
+				artist: "乃木坂46",
+				label: "ここにいる理由",
+				value: "乃木坂46 9thシングル ここにいる理由",
+				url: "https://www.youtube.com/watch?v=Wi12L1sS_us",
+			},
+			{
+				artist: "乃木坂46",
+				label: "僕が行かなきゃ誰が行くんだ?",
+				value: "乃木坂46 9thシングル 僕が行かなきゃ誰が行くんだ?",
+				url: "https://www.youtube.com/watch?v=F_xyD1GASIM",
 			},
 		],
 	},
@@ -603,9 +769,33 @@ export default [
 			},
 			{
 				artist: "乃木坂46",
-				label: "その先の出口",
-				value: "乃木坂46 8thシングル その先の出口",
-				url: "https://www.youtube.com/watch?v=hUReavvCKpg",
+				label: "ロマンスのスタート",
+				value: "乃木坂46 8thシングル ロマンスのスタート",
+				url: "https://www.youtube.com/watch?v=Pb0_4WYcabo",
+			},
+			{
+				artist: "乃木坂46",
+				label: "吐息のメソッド",
+				value: "乃木坂46 8thシングル 吐息のメソッド",
+				url: "https://www.youtube.com/watch?v=8ZR8bYC1pxw",
+			},
+			{
+				artist: "乃木坂46",
+				label: "孤独兄弟",
+				value: "乃木坂46 8thシングル 孤独兄弟",
+				url: "https://www.youtube.com/watch?v=Xs6UbqoZ5zg",
+			},
+			{
+				artist: "乃木坂46",
+				label: "生まれたままで",
+				value: "乃木坂46 8thシングル 生まれたままで",
+				url: "https://www.youtube.com/watch?v=nyw3ji6fmK4",
+			},
+			{
+				artist: "乃木坂46",
+				label: "ダンケシェーン",
+				value: "乃木坂46 8thシングル ダンケシェーン",
+				url: "https://www.youtube.com/watch?v=kbKMWqI0Pkg",
 			},
 		],
 	},
@@ -623,6 +813,30 @@ export default [
 				label: "初恋の人を今でも",
 				value: "乃木坂46 7thシングル 初恋の人を今でも",
 				url: "https://www.youtube.com/watch?v=X7MtyWLbFZQ",
+			},
+			{
+				artist: "乃木坂46",
+				label: "月の大きさ",
+				value: "乃木坂46 7thシングル 月の大きさ",
+				url: "https://www.youtube.com/watch?v=gIoJIhBbd6U",
+			},
+			{
+				artist: "乃木坂46",
+				label: "私のために 誰かのために",
+				value: "乃木坂46 7thシングル 私のために 誰かのために",
+				url: "https://www.youtube.com/watch?v=eyyOxwuIaic",
+			},
+			{
+				artist: "乃木坂46",
+				label: "そんなバカな・・・",
+				value: "乃木坂46 7thシングル そんなバカな・・・",
+				url: "https://www.youtube.com/watch?v=GmOtTp-mmg8",
+			},
+			{
+				artist: "乃木坂46",
+				label: "やさしさとは",
+				value: "乃木坂46 7thシングル やさしさとは",
+				url: "https://www.youtube.com/watch?v=JTS5ubC76bQ",
 			},
 		],
 	},
@@ -647,6 +861,18 @@ export default [
 				value: "乃木坂46 6thシングル 他の星から",
 				url: "https://www.youtube.com/watch?v=k99PIBrkryw",
 			},
+			{
+				artist: "乃木坂46",
+				label: "コウモリよ",
+				value: "乃木坂46 6thシングル コウモリよ",
+				url: "https://www.youtube.com/watch?v=or0MdaIca8M",
+			},
+			{
+				artist: "乃木坂46",
+				label: "扇風機",
+				value: "乃木坂46 6thシングル 扇風機",
+				url: "https://www.youtube.com/watch?v=oF_B2WIGlqM",
+			},
 		],
 	},
 	{
@@ -670,6 +896,24 @@ export default [
 				value: "乃木坂46 5thシングル 13日の金曜日",
 				url: "https://www.youtube.com/watch?v=NKx4pI7Ns5U",
 			},
+			{
+				artist: "乃木坂46",
+				label: "ロマンティックいか焼き",
+				value: "乃木坂46 5thシングル ロマンティックいか焼き",
+				url: "https://www.youtube.com/watch?v=-18BjuDUezI",
+			},
+			{
+				artist: "乃木坂46",
+				label: "でこぴん",
+				value: "乃木坂46 5thシングル でこぴん",
+				url: "https://www.youtube.com/watch?v=vn7InKBFwe0",
+			},
+			{
+				artist: "乃木坂46",
+				label: "サイコキネシスの可能性",
+				value: "乃木坂46 5thシングル サイコキネシスの可能性",
+				url: "https://www.youtube.com/watch?v=0PrycNXDgTg",
+			},
 		],
 	},
 	{
@@ -680,6 +924,36 @@ export default [
 				label: "制服のマネキン",
 				value: "乃木坂46 4thシングル 制服のマネキン",
 				url: "https://www.youtube.com/watch?v=Ggv1heiVrdM",
+			},
+			{
+				artist: "乃木坂46",
+				label: "指望遠鏡",
+				value: "乃木坂46 4thシングル 指望遠鏡",
+				url: "https://www.youtube.com/watch?v=mG_vNH77sZ4",
+			},
+			{
+				artist: "乃木坂46",
+				label: "春のメロディー",
+				value: "乃木坂46 4thシングル 春のメロディー",
+				url: "https://www.youtube.com/watch?v=p8_qAuHJEiA",
+			},
+			{
+				artist: "乃木坂46",
+				label: "渋谷ブルース",
+				value: "乃木坂46 4thシングル 渋谷ブルース",
+				url: "https://www.youtube.com/watch?v=lbuEE3SYZJE",
+			},
+			{
+				artist: "乃木坂46",
+				label: "ここじゃないどこか",
+				value: "乃木坂46 4thシングル ここじゃないどこか",
+				url: "https://www.youtube.com/watch?v=SjMA2Q2x8A8",
+			},
+			{
+				artist: "乃木坂46",
+				label: "やさしさなら間に合ってる",
+				value: "乃木坂46 4thシングル やさしさなら間に合ってる",
+				url: "https://www.youtube.com/watch?v=xJxNJnh_ukg",
 			},
 		],
 	},
@@ -696,7 +970,31 @@ export default [
 				artist: "乃木坂46",
 				label: "せっかちなかたつむり",
 				value: "乃木坂46 3rdシングル せっかちなかたつむり",
-				url: "https://www.youtube.com/watch?v=fYJe1mMnlEI",
+				url: "https://www.youtube.com/watch?v=ztAJrJFfcHc",
+			},
+			{
+				artist: "乃木坂46",
+				label: "涙がまだ悲しみだった頃",
+				value: "乃木坂46 3rdシングル 涙がまだ悲しみだった頃",
+				url: "https://www.youtube.com/watch?v=bsO8wz55dX0",
+			},
+			{
+				artist: "乃木坂46",
+				label: "人はなぜ走るのか?",
+				value: "乃木坂46 3rdシングル 人はなぜ走るのか?",
+				url: "https://www.youtube.com/watch?v=kOMImsn3Ei4",
+			},
+			{
+				artist: "乃木坂46",
+				label: "音が出ないギター",
+				value: "乃木坂46 3rdシングル 音が出ないギター",
+				url: "https://www.youtube.com/watch?v=vPeXrT830LM",
+			},
+			{
+				artist: "乃木坂46",
+				label: "海流の島よ",
+				value: "乃木坂46 3rdシングル 海流の島よ",
+				url: "https://www.youtube.com/watch?v=YlutOqXBfLw",
 			},
 		],
 	},
@@ -709,6 +1007,42 @@ export default [
 				value: "乃木坂46 2ndシングル おいでシャンプー",
 				url: "https://www.youtube.com/watch?v=PvJ2TqJrrGo",
 			},
+			{
+				artist: "乃木坂46",
+				label: "心の薬",
+				value: "乃木坂46 2ndシングル 心の薬",
+				url: "https://www.youtube.com/watch?v=wcAfR112Ezk",
+			},
+			{
+				artist: "乃木坂46",
+				label: "偶然を言い訳にして",
+				value: "乃木坂46 2ndシングル 偶然を言い訳にして",
+				url: "https://www.youtube.com/watch?v=ITSRQwuxPWU",
+			},
+			{
+				artist: "乃木坂46",
+				label: "偶然を言い訳にして",
+				value: "乃木坂46 2ndシングル 偶然を言い訳にして",
+				url: "https://www.youtube.com/watch?v=ITSRQwuxPWU",
+			},
+			{
+				artist: "乃木坂46",
+				label: "水玉模様",
+				value: "乃木坂46 2ndシングル 水玉模様",
+				url: "https://www.youtube.com/watch?v=uCwrjFQe2-Y",
+			},
+			{
+				artist: "乃木坂46",
+				label: "狼に口笛を",
+				value: "乃木坂46 2ndシングル 狼に口笛を",
+				url: "https://www.youtube.com/watch?v=ERltowP_80Q",
+			},
+			{
+				artist: "乃木坂46",
+				label: "ハウス!",
+				value: "乃木坂46 2ndシングル ハウス!",
+				url: "https://www.youtube.com/watch?v=eqekO1IuFRE",
+			},
 		],
 	},
 	{
@@ -719,6 +1053,36 @@ export default [
 				label: "ぐるぐるカーテン",
 				value: "乃木坂46 1stシングル ぐるぐるカーテン",
 				url: "https://www.youtube.com/watch?v=OtzRWcavPwg",
+			},
+			{
+				artist: "乃木坂46",
+				label: "左胸の勇気",
+				value: "乃木坂46 1stシングル 左胸の勇気",
+				url: "https://www.youtube.com/watch?v=xGwa8ZRjerc",
+			},
+			{
+				artist: "乃木坂46",
+				label: "会いたかったかもしれない",
+				value: "乃木坂46 1stシングル 会いたかったかもしれない",
+				url: "https://www.youtube.com/watch?v=_j4bKgl5Ovc",
+			},
+			{
+				artist: "乃木坂46",
+				label: "失いたくないから",
+				value: "乃木坂46 1stシングル 失いたくないから",
+				url: "https://www.youtube.com/watch?v=B0GLysPrL7U",
+			},
+			{
+				artist: "乃木坂46",
+				label: "白い雲にのって",
+				value: "乃木坂46 1stシングル 白い雲にのって",
+				url: "https://www.youtube.com/watch?v=K3ggl6VEWV0",
+			},
+			{
+				artist: "乃木坂46",
+				label: "乃木坂の詩",
+				value: "乃木坂46 1stシングル 乃木坂の詩",
+				url: "https://www.youtube.com/watch?v=qQX2kq7XKEQ",
 			},
 		]
 	},
