@@ -631,7 +631,7 @@ class App extends Component {
                         placeholder="Find videos and add to list"
                         className="darkselect"
                         {...cusComponents}
-                        options={playlist}
+                        options={database}
                         onChange={(e) => this.handleUpdatePlaylist(e)}
                       >
                       </Select>
