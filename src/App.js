@@ -5,6 +5,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham-dark.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import IconButton from '@material-ui/core/IconButton';
 import Select, { components } from 'react-select';
 import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
@@ -49,6 +50,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 //import youtubeplaylist from './youtubeplaylist';
 import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
@@ -59,6 +61,7 @@ import './defaults.css'
 import './range.css'
 import './App.css'
 import ReactPlayer from './ReactPlayer'
+import CustomHeaderGroup from "./customHeaderGroup.js";
 // bootstrap ag-grid-community load-script
 //import axios from 'axios';
 //import Duration from './Duration'
@@ -83,10 +86,18 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-const playlist = jpplaylist;
+
+let databaseplaylist = []
+database.map((index, key) => {
+  index.options.map((song, number) => {
+    databaseplaylist.push({ label: song.label, artist: song.artist, album: index.label, url: song.url })
+  })
+})
+let playlist = databaseplaylist
+/*const playlist = jpplaylist;
 chiplaylist.map((index, key) => {
   playlist.push({ label: index.label, options: index.options })
-})
+})*/
 
 const useStyles = makeStyles(theme => ({
   fab: {
@@ -104,6 +115,9 @@ const useStyles = makeStyles(theme => ({
   },
   root: {
     width: 200,
+  },
+  margin: {
+    margin: theme.spacing(1),
   },
 }));
 
@@ -137,25 +151,30 @@ class App extends Component {
       columnDefs: [
         {
           headerName: "Playlist",
+          headerGroupComponent: "customHeaderGroupComponent",
           children: [
-            /*{
-              headerName: "id", field: "delete", width: 40,
-              cellRenderer: 'buttonRenderer',
-            },
-            https://www.ag-grid.com/javascript-grid-cell-rendering-components/
-            */
             {
-              headerName: "Title", field: "next", rowDrag: true
+              headerName: "", field: "delete", width: 40,
+              cellRendererFramework: (props) => {
+                return (<IconButton aria-label="delete" className={useStyles.margin} size="small" onClick={this.onRemoveSelected.bind(this)}>
+                  <DeleteTwoToneIcon color="secondary" fontSize="inherit" />
+                </IconButton>
+                )
+              }
+            },
+            {
+              headerName: "Title", field: "next",
             },
             {
               headerName: "Artist", field: "artist"
             },
             {
-              headerName: "Source", field: "source"
+              headerName: "Source", field: "source", hide: true
             },
           ],
-        }
+        },
       ],
+      frameworkComponents: { customHeaderGroupComponent: CustomHeaderGroup },
       rowData: [],
       rowSelection: "multiple"
     };
@@ -274,6 +293,11 @@ class App extends Component {
     }
   }
 
+  handlePlayInGrid() {
+    if (this.state.rowData.length !== 0)
+      this.setState({ url: this.state.rowData[0].source, playing: true, playingTitle: this.state.rowData[0].next })
+  }
+
   handleEnded = () => {
     console.log('onEnded')
     const tmp = this.state.rowData
@@ -300,10 +324,13 @@ class App extends Component {
           else
             this.setState({ url: this.state.rowData[0].source, playingTitle: this.state.rowData[0].next })
         else if (this.state.random) {
+          const randplaylist = Math.floor(Math.random() * (playlist.length));
+          tmp.push({ artist: playlist[randplaylist].artist, next: playlist[randplaylist].label, source: playlist[randplaylist].url })
           //random draw and play
-          const randplaylist = Math.floor(Math.random() * (Object.keys(playlist).length));
+          /*const randplaylist = Math.floor(Math.random() * (Object.keys(playlist).length));
           const randsong = Math.floor(Math.random() * (playlist[randplaylist].options.length));
           tmp.push({ artist: playlist[randplaylist].options[randsong].artist, next: playlist[randplaylist].options[randsong].label, source: playlist[randplaylist].options[randsong].url })
+          */
           this.setState({ rowData: tmp })
           this.gridApi.setRowData(this.state.rowData)
           this.setState({ url: this.state.rowData[0].source, playingTitle: this.state.rowData[0].next })
@@ -329,17 +356,22 @@ class App extends Component {
   }
 
   handleRandom = () => {
+    console.log(playlist)
     this.setState({ random: !this.state.random })
     if (!this.state.random) {
       const tmp = this.state.rowData
       console.log("run random")
       console.log(this.state.playing)
       if (!this.state.playing || (tmp === undefined || tmp.length == 0)) {
+        const randplaylist = Math.floor(Math.random() * (playlist.length));
+        tmp.push({ artist: playlist[randplaylist].artist, next: playlist[randplaylist].label, source: playlist[randplaylist].url })
+        /*
         //random draw and play
         const randplaylist = Math.floor(Math.random() * (Object.keys(playlist).length));
         const randsong = Math.floor(Math.random() * (playlist[randplaylist].options.length));
         //update grid and load
         tmp.push({ artist: playlist[randplaylist].options[randsong].artist, next: playlist[randplaylist].options[randsong].label, source: playlist[randplaylist].options[randsong].url })
+        */
         this.setState({ rowData: tmp })
         this.gridApi.setRowData(this.state.rowData)
         this.setState({ url: this.state.rowData[0].source, playingTitle: this.state.rowData[0].next })
@@ -349,12 +381,21 @@ class App extends Component {
 
   handleCustomAdd(evt, data) {
     const tmp = this.state.rowData
-    console.log(data)
     data.map((index, key) => {
       tmp.push({ artist: index.artist, next: index.label, source: index.url })
     })
     this.setState({ rowData: tmp })
     this.gridApi.setRowData(this.state.rowData)
+    this.handleToggleModal()
+  }
+
+  handleCustomRand(evt, data) {
+    console.log(data)
+    let tmp = []
+    data.map((index, key) => {
+      tmp.push({ label: index.label, artist: index.artist, album: index.album, url: index.url })
+    })
+    playlist = tmp
     this.handleToggleModal()
   }
 
@@ -367,7 +408,6 @@ class App extends Component {
     })
     this.setState({ rowData: tmp })
     this.gridApi.setRowData(this.state.rowData);
-    console.log(this.state.rowData)
   }
 
   /*handleTogglePIP = () => {
@@ -391,43 +431,40 @@ class App extends Component {
       </Button>
     )
   }*/
-  setActiveTab(tab){
-    this.setState({ activeTab : tab })
+  setActiveTab(tab) {
+    this.setState({ activeTab: tab })
   }
 
   ref = player => {
     this.player = player
   }
 
-  handleAddAlbumSelect(e){
-     this.setState({ AblumSelect : e.value })
+  handleAddAlbumSelect(e) {
+    console.log(e)
+    this.setState({ AblumSelect: e.value })
   }
 
-  handleAddArtistSelect(e){
-    this.setState({ ArtistSelect : e.value })
+  handleAddArtistSelect(e) {
+    this.setState({ ArtistSelect: e.value })
  }
 
-  handleAddName(e){
-    this.setState({ AddName : e.target.value })
+  handleAddName(e) {
+    this.setState({ AddName: e.target.value })
 }
 
-  handleAddSource(e){
-    this.setState({ AddSource : e.target.value })
+  handleAddSource(e) {
+    this.setState({ AddSource: e.target.value })
 }
 
-  handleAddDatabase = () =>{
-    let newsong={
-      label: this.state.AblumSelect,
-      options: [
-        {
-          artist: this.state.ArtistSelect,
+  handleAddDatabase = () => {
+    let newsong = {
           label: this.state.AddName,
-          value: this.state.AblumSelect + ' '+this.state.AddName+' '+ this.state.ArtistSelect,
+      artist: this.state.ArtistSelect,
+      album: this.state.AblumSelect,
           url: this.state.AddSource,
-        },
-      ]
     }
-    console.log(newsong)
+    playlist.push(newsong)
+    console.log(playlist)
     /*testplaylist.push(newsong)
     console.log(typeof testplaylist)
     var writeJson = require('write-json'); 
@@ -437,7 +474,7 @@ class App extends Component {
 
   render() {
     const classes = useStyles;
-    const { url, playing, controls, light, volume, muted, loop, hide, played, loaded, duration, playbackRate, pip, title, dark, random, activeTab,ArtistSelect,AblumSelect} = this.state
+    const { url, playing, controls, light, volume, muted, loop, hide, played, loaded, duration, playbackRate, pip, title, dark, random, activeTab, ArtistSelect, AblumSelect } = this.state
     /*if (url !== null && playing) {
       axios.get('https://noembed.com/embed?url=' + url)
         .then(response => this.setState({ title: response.data.title }))
@@ -449,20 +486,20 @@ class App extends Component {
       })
     })
     let filterartistlist = []
-    database.map((index,key)=>{
-      index.options.map((song,number)=>{
-        filterartistlist.push({label:song.artist,value:song.artist})
+    database.map((index, key) => {
+      index.options.map((song, number) => {
+        filterartistlist.push({ label: song.artist, value: song.artist })
       })
     })
     let artistlist = filterartistlist.reduce((unique, o) => {
-      if(!unique.some(obj => obj.label === o.label && obj.value === o.value)) {
+      if (!unique.some(obj => obj.label === o.label && obj.value === o.value)) {
         unique.push(o);
       }
       return unique;
-  },[])
+    }, [])
     let albumlist = []
-    database.map((index,key)=>{
-      albumlist.push({label:index.label,value:index.label})
+    database.map((index, key) => {
+      albumlist.push({ label: index.label, value: index.label })
     })
     let cusComponents = {};
     const MenuList = props => {
@@ -604,13 +641,12 @@ class App extends Component {
                         domLayout="autoHeight"
                         onGridReady={this.onGridReady}
                         rowSelection={this.state.rowSelection}
+                        frameworkComponents={this.state.frameworkComponents}
+                        gridOptions={{
+                          context: { componentParent: this }
+                        }}
                       >
                       </AgGridReact>
-                      <Button onClick={this.onRemoveSelected.bind(this)}>Remove Selected</Button>
-                      <Button outline color="success"
-                        onClick={() => this.setState({ url: this.state.rowData[0].source, playing: true, playingTitle: this.state.rowData[0].next })}>
-                        Play
-                    </Button>
                     </div>
                   </th>
                 </tr>
@@ -635,6 +671,7 @@ class App extends Component {
               <ExpandLessIcon className={classes.expand_less} /> : <ExpandMoreIcon className={classes.expand_more} />}
             {(this.state.collapse) ? 'Hide' : 'Details'}
           </Fab>
+        </section>
           <div >
             <Modal isOpen={this.state.showModal} toggle={this.handleToggleModal} >
               <ModalHeader toggle={this.handleToggleModal}>Playlist Menu</ModalHeader>
@@ -656,6 +693,14 @@ class App extends Component {
             Adding to database
           </NavLink>
         </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: activeTab === '3' })}
+                    onClick={() => { this.setActiveTab('3'); }}
+                  >
+                    Customize Random
+          </NavLink>
+                </NavItem>
       </Nav>
               <TabContent activeTab={activeTab}>
               <TabPane tabId="1">
@@ -693,44 +738,58 @@ class App extends Component {
                   <Table>
                     <tr>
                     <th>
-                    <Label>Name</Label>
+                        <Label className="darkselect">Name</Label>
                     </th>
                     <td>
-                    <Input type="text" onChange={(e) =>this.handleAddName(e)}></Input>
+                        <Input className="darkselect" type="text" onChange={(e) => this.handleAddName(e)}></Input>
                     </td>
                     </tr>
                     <tr>
                     <th>
-                    <Label>Artist</Label>
+                        <Label className="darkselect">Artist</Label>
                     </th>
                     <td>
-                    <Select
+                        <Input type="text" list="artistlist" onChange={(e) => this.handleAddArtistSelect(e)} />
+                        <datalist id="artistlist" >
+                          {artistlist.map((item, key) =>
+                            <option key={item.label} value={item.value} />
+                          )}
+                        </datalist>
+                        {/*<Select
+                          className="darkselect"
                     isSearchable
                     selected={ArtistSelect}
-                    onChange={(e) =>this.handleAddArtistSelect(e)}
+                          onChange={(e) => this.handleAddArtistSelect(e)}
                     options={artistlist}
-                    ></Select>
+                        ></Select>*/}
                     </td>
                     </tr>
                     <tr>
                     <th>
-                    <Label>Album</Label>
+                        <Label className="darkselect">Album</Label>
                     </th>
                     <td>
-                    <Select
+                        <Input type="text" list="albumlist" onChange={(e) => this.handleAddAlbumSelect(e)} />
+                        <datalist id="albumlist" >
+                          {albumlist.map((item, key) =>
+                            <option key={item.label} value={item.value} />
+                          )}
+                        </datalist>
+                        {/*<Select
+                          className="darkselect"
                     isSearchable
                     selected={AblumSelect}
-                    onChange={(e) =>this.handleAddAlbumSelect(e)}
+                          onChange={(e) => this.handleAddAlbumSelect(e)}
                     options={albumlist}
-                    ></Select>
+                        ></Select>*/}
                     </td>
                     </tr>
                     <tr>
                     <th>
-                    <Label>Source</Label>
+                        <Label className="darkselect">Source</Label>
                     </th>
                     <td>
-                    <Input type="text" onChange={(e) =>this.handleAddSource(e)}></Input>
+                        <Input className="darkselect" type="text" onChange={(e) => this.handleAddSource(e)}></Input>
                     </td>
                     </tr>
                     <tr>
@@ -741,11 +800,41 @@ class App extends Component {
                     </tr>
                   </Table>
                   </TabPane>
+                <TabPane tabId="3">
+                  <MaterialTable
+                    title="Song database"
+                    data={databaseplaylist}
+                    icons={tableIcons}
+                    columns={[
+                      { title: "Title", field: "label", cellStyle: { color: '#000000' }, headerStyle: { color: '#000000' } },
+                      { title: "Artist", field: "artist", cellStyle: { color: '#000000' }, headerStyle: { color: '#000000' } },
+                      { title: "Single/Album", field: "album", cellStyle: { color: '#000000' }, headerStyle: { color: '#000000' } },
+                      { title: "Source", field: "url", cellStyle: { color: '#000000' }, headerStyle: { color: '#000000' } },
+                    ]}
+                    //parentChildData={(row, rows) => rows.find(a => a.id === row.parentId)}
+                    options={{
+                      selection: true,
+                      grouping: true,
+                      sorting: true,
+                      search: true,
+                      filtering: true,
+                      pageSize: 10,
+                    }}
+                    actions={[
+                      {
+                        tooltip: 'Add to List',
+                        icon: tableIcons.Add,
+                        onClick: (evt, data) => {
+                          this.handleCustomRand(evt, data)
+                        }
+                      }
+                    ]}
+                  />
+                </TabPane>
                   </TabContent>
               </ModalBody>
             </Modal>
           </div>
-        </section>
       </div >
     );
   }
