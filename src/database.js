@@ -1029,7 +1029,7 @@ export default [
 				artist: "乃木坂46",
 				label: "水玉模様",
 				value: "乃木坂46 2ndシングル 水玉模様",
-				url: "https://www.youtube.com/watch?v=uCwrjFQe2-Y",
+				url: "https://www.youtube.com/watch?v=RbdwcTVYH_s",
 			},
 			{
 				artist: "乃木坂46",
