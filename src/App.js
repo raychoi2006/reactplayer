@@ -314,9 +314,9 @@ class App extends Component {
           if (this.state.random) {
             const randplaylistonrow = Math.floor(Math.random() * (Object.keys(tmp).length));
             const randselected = tmp.splice(randplaylistonrow, 1)
-            console.log(randselected)
+            //console.log(randselected)
             tmp.splice(0, 0, { artist: randselected[0].artist, next: randselected[0].next, source: randselected[0].source })
-            console.log(tmp)
+            //console.log(tmp)
             this.setState({ rowData: tmp })
             this.gridApi.setRowData(this.state.rowData)
             this.setState({ url: this.state.rowData[0].source, playingTitle: this.state.rowData[0].next })
@@ -346,10 +346,8 @@ class App extends Component {
   handleUpdatePlaylist(value) {
     const tmpData = this.state.rowData;
     playlist.map((index, key) => {
-      index.options.map((innerindex, innerkey) => {
-        if (innerindex.label === value.label)
-          tmpData.push({ artist: innerindex.artist, next: innerindex.label, source: innerindex.url })
-      })
+        if (index.label === value.label)
+          tmpData.push({ artist: index.artist, next: index.label, source: index.url })
     })
     this.setState({ rowData: tmpData })
     this.gridApi.setRowData(this.state.rowData);

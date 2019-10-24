@@ -713,7 +713,7 @@ export default [
 				artist: "乃木坂46",
 				label: "Tender days",
 				value: "乃木坂46 10thシングル Tender days",
-				url: "https://www.youtube.com/watch?v=52m4Uw4m8ko",
+				url: "https://www.youtube.com/watch?v=DF44xuuHYS8",
 			},
 		],
 	},
@@ -964,7 +964,7 @@ export default [
 				artist: "乃木坂46",
 				label: "走れ！Bicycle",
 				value: "乃木坂46 3rdシングル 走れ！Bicycle",
-				url: "https://www.youtube.com/watch?v=BPu9_I5FPkQ",
+				url: "https://www.youtube.com/watch?v=hVa4HELcAIM",
 			},
 			{
 				artist: "乃木坂46",
@@ -1005,7 +1005,7 @@ export default [
 				artist: "乃木坂46",
 				label: "おいでシャンプー",
 				value: "乃木坂46 2ndシングル おいでシャンプー",
-				url: "https://www.youtube.com/watch?v=PvJ2TqJrrGo",
+				url: "https://www.youtube.com/watch?v=Vb0SltPaQSc",
 			},
 			{
 				artist: "乃木坂46",
