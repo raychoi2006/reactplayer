@@ -100,6 +100,7 @@ else {
   playlist = JSON.parse(localStorage.getItem('playlist'))
 }
 let gridplaylist = []
+if (JSON.parse(localStorage.getItem('gridplaylist')) !== null)
 gridplaylist = JSON.parse(localStorage.getItem('gridplaylist'))
 console.log(gridplaylist)
 /*const playlist = jpplaylist;
