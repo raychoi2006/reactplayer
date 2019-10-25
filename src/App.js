@@ -1,5 +1,5 @@
-import React, { Component , useState } from 'react'
-import { CustomInput, Button, Label, Input, Table, Progress, Collapse, Row, Col, Modal, ModalHeader, ModalBody, TabContent, TabPane, Nav, NavItem, NavLink ,ModalFooter, } from 'reactstrap';
+import React, { Component, useState } from 'react'
+import { UncontrolledTooltip, Alert, CustomInput, Button, Label, Input, Table, Progress, Collapse, Row, Col, Modal, ModalHeader, ModalBody, TabContent, TabPane, Nav, NavItem, NavLink, ModalFooter, } from 'reactstrap';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
@@ -7,7 +7,7 @@ import 'ag-grid-community/dist/styles/ag-theme-balham-dark.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import IconButton from '@material-ui/core/IconButton';
 import Select, { components } from 'react-select';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
@@ -65,6 +65,7 @@ import CustomHeaderGroup from "./customHeaderGroup.js";
 // bootstrap ag-grid-community load-script
 //import axios from 'axios';
 //import Duration from './Duration'
+import swal from 'sweetalert';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -85,19 +86,54 @@ const tableIcons = {
   ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
-
-
-let databaseplaylist = []
-database.map((index, key) => {
-  index.options.map((song, number) => {
-    databaseplaylist.push({ label: song.label, artist: song.artist, album: index.label, url: song.url })
+let playlist = []
+if (JSON.parse(localStorage.getItem('playlist')) === null) {
+  let databaseplaylist = []
+  database.map((index, key) => {
+    index.options.map((song, number) => {
+      databaseplaylist.push({ label: song.label, artist: song.artist, album: index.label, url: song.url })
+    })
   })
-})
-let playlist = databaseplaylist
+  playlist = databaseplaylist
+}
+else {
+  playlist = JSON.parse(localStorage.getItem('playlist'))
+}
+let gridplaylist = []
+gridplaylist = JSON.parse(localStorage.getItem('gridplaylist'))
+console.log(gridplaylist)
 /*const playlist = jpplaylist;
 chiplaylist.map((index, key) => {
   playlist.push({ label: index.label, options: index.options })
 })*/
+
+let databaseplaylist = []
+if (JSON.parse(localStorage.getItem('databaseplaylist')) === null) {
+  database.map((index, key) => {
+    index.options.map((song, number) => {
+      databaseplaylist.push({ label: song.label, artist: song.artist, album: index.label, url: song.url })
+    })
+  })
+}
+else {
+  databaseplaylist = JSON.parse(localStorage.getItem('databaseplaylist'))
+}
+let filterartistlist = []
+database.map((index, key) => {
+  index.options.map((song, number) => {
+    filterartistlist.push({ label: song.artist, value: song.artist })
+  })
+})
+let artistlist = filterartistlist.reduce((unique, o) => {
+  if (!unique.some(obj => obj.label === o.label && obj.value === o.value)) {
+    unique.push(o);
+  }
+  return unique;
+}, [])
+let albumlist = []
+database.map((index, key) => {
+  albumlist.push({ label: index.label, value: index.label })
+})
 
 const useStyles = makeStyles(theme => ({
   fab: {
@@ -120,6 +156,17 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
   },
 }));
+
+const theme = createMuiTheme({
+  palette: {
+    white: {
+      color: '#fff',
+    },
+    black: {
+      color: '#000',
+    },
+  },
+});
 
 class App extends Component {
   constructor(props) {
@@ -144,10 +191,10 @@ class App extends Component {
       showModal: false,
       playingTitle: '',
       activeTab: '1',
-      AblumSelect:'',
-      ArtistSelect:'',
-      AddName:'',
-      AddSource:'',
+      AblumSelect: '',
+      ArtistSelect: '',
+      AddName: '',
+      AddSource: '',
       columnDefs: [
         {
           headerName: "Playlist",
@@ -156,9 +203,10 @@ class App extends Component {
             {
               headerName: "", field: "delete", width: 40,
               cellRendererFramework: (props) => {
-                return (<IconButton aria-label="delete" className={useStyles.margin} size="small" onClick={this.onRemoveSelected.bind(this)}>
-                  <DeleteTwoToneIcon color="secondary" fontSize="inherit" />
-                </IconButton>
+                return (
+                  <IconButton aria-label="delete" className={useStyles.margin} size="small" onClick={this.onRemoveSelected.bind(this)}>
+                    <DeleteTwoToneIcon color="secondary" fontSize="inherit" />
+                  </IconButton>
                 )
               }
             },
@@ -175,7 +223,7 @@ class App extends Component {
         },
       ],
       frameworkComponents: { customHeaderGroupComponent: CustomHeaderGroup },
-      rowData: [],
+      rowData: gridplaylist,
       rowSelection: "multiple"
     };
     this.handleToggleControls = this.handleToggleControls.bind(this);
@@ -199,7 +247,7 @@ class App extends Component {
   }
 
   /*componentDidMount() {
-
+ 
   }*/
 
   handlePlayPause = () => {
@@ -250,11 +298,27 @@ class App extends Component {
   }
 
   handleToggleMuted = () => {
-    this.setState({ muted: !this.state.muted })
+    this.state.muted ?
+      this.setState({ muted: !this.state.muted, volume: 0.8 })
+      :
+      this.setState({ muted: !this.state.muted, volume: 0 })
   }
 
   handleToggleModal() {
     this.setState({ showModal: !this.state.showModal })
+    if (!this.state.showModal) {
+      switch (this.state.activeTab) {
+        case '1':
+          swal("Adding to List", "Choose songs by checkboxes and add to playlist.");
+          break;
+        case '2':
+          swal("Adding to Database", "Input song information and add to database.");
+          break;
+        case '3':
+          swal("Customize Random", "Choose songs for random, system will store your choices and random your choices only.");
+          break;
+      }
+    }
   }
 
   handleSetPlaybackRate = e => {
@@ -293,9 +357,22 @@ class App extends Component {
     }
   }
 
+  handleSaveListInGrid() {
+    if (this.state.rowData.length !== 0) {
+      localStorage.setItem('gridplaylist', JSON.stringify(this.state.rowData))
+      swal("Saved", "Default playlist are saved", "success")
+    }
+    else {
+      localStorage.setItem('gridplaylist', JSON.stringify(this.state.rowData))
+      swal("Saved", "Nothing in Playlist.So the default playlist is null", "success")
+    }
+  }
+
   handlePlayInGrid() {
     if (this.state.rowData.length !== 0)
       this.setState({ url: this.state.rowData[0].source, playing: true, playingTitle: this.state.rowData[0].next })
+    else
+      swal("Warning", "Nothing in Playlist.", "warning")
   }
 
   handleEnded = () => {
@@ -346,8 +423,8 @@ class App extends Component {
   handleUpdatePlaylist(value) {
     const tmpData = this.state.rowData;
     playlist.map((index, key) => {
-        if (index.label === value.label)
-          tmpData.push({ artist: index.artist, next: index.label, source: index.url })
+      if (index.label === value.label)
+        tmpData.push({ artist: index.artist, next: index.label, source: index.url })
     })
     this.setState({ rowData: tmpData })
     this.gridApi.setRowData(this.state.rowData);
@@ -388,12 +465,14 @@ class App extends Component {
   }
 
   handleCustomRand(evt, data) {
-    console.log(data)
+    //console.log(data)
     let tmp = []
     data.map((index, key) => {
       tmp.push({ label: index.label, artist: index.artist, album: index.album, url: index.url })
     })
     playlist = tmp
+    // store user details 
+    localStorage.setItem('playlist', JSON.stringify(playlist))
     this.handleToggleModal()
   }
 
@@ -431,6 +510,17 @@ class App extends Component {
   }*/
   setActiveTab(tab) {
     this.setState({ activeTab: tab })
+    switch (tab) {
+      case '1':
+        swal("Adding to List", "Choose songs by checkboxes and add to playlist.");
+        break;
+      case '2':
+        swal("Adding to Database", "Input song information and add to database.");
+        break;
+      case '3':
+        swal("Customize Random", "Choose songs for random, system will store your choices and random your choices only.");
+        break;
+    }
   }
 
   ref = player => {
@@ -438,28 +528,27 @@ class App extends Component {
   }
 
   handleAddAlbumSelect(e) {
-    console.log(e)
-    this.setState({ AblumSelect: e.value })
+    this.setState({ AblumSelect: e.target.value })
   }
 
   handleAddArtistSelect(e) {
-    this.setState({ ArtistSelect: e.value })
- }
+    this.setState({ ArtistSelect: e.target.value })
+  }
 
   handleAddName(e) {
     this.setState({ AddName: e.target.value })
-}
+  }
 
   handleAddSource(e) {
     this.setState({ AddSource: e.target.value })
-}
+  }
 
   handleAddDatabase = () => {
     let newsong = {
-          label: this.state.AddName,
+      label: this.state.AddName,
       artist: this.state.ArtistSelect,
       album: this.state.AblumSelect,
-          url: this.state.AddSource,
+      url: this.state.AddSource,
     }
     playlist.push(newsong)
     console.log(playlist)
@@ -467,6 +556,9 @@ class App extends Component {
     console.log(typeof testplaylist)
     var writeJson = require('write-json'); 
     writeJson.sync('testplaylist.json', {abc: 'xyz'});*/
+    databaseplaylist.push(newsong)
+    localStorage.setItem('databaseplaylist', JSON.stringify(databaseplaylist))
+    swal("Added", "Successfully added to list", "success")
     this.handleToggleModal()
   }
 
@@ -477,28 +569,8 @@ class App extends Component {
       axios.get('https://noembed.com/embed?url=' + url)
         .then(response => this.setState({ title: response.data.title }))
     }*/
-    let databaseplaylist = []
-    database.map((index, key) => {
-      index.options.map((song, number) => {
-        databaseplaylist.push({ label: song.label, artist: song.artist, album: index.label, url: song.url })
-      })
-    })
-    let filterartistlist = []
-    database.map((index, key) => {
-      index.options.map((song, number) => {
-        filterartistlist.push({ label: song.artist, value: song.artist })
-      })
-    })
-    let artistlist = filterartistlist.reduce((unique, o) => {
-      if (!unique.some(obj => obj.label === o.label && obj.value === o.value)) {
-        unique.push(o);
-      }
-      return unique;
-    }, [])
-    let albumlist = []
-    database.map((index, key) => {
-      albumlist.push({ label: index.label, value: index.label })
-    })
+    const TFoptions = []
+    TFoptions.push({ label: 'true', value: true }, { label: 'false', value: false })
     let cusComponents = {};
     const MenuList = props => {
       return (
@@ -564,11 +636,23 @@ class App extends Component {
               >
                 <FastForwardIcon />
       </Button>*/}
-              <Button onClick={this.handleRandom}>{random ? <ShuffleIcon /> : <SyncAltIcon />}</Button>
+              <Button id="random" onClick={this.handleRandom}>{random ? <ShuffleIcon /> : <SyncAltIcon />}</Button>
+              <UncontrolledTooltip placement="bottom" target="random">
+                {random ? "Turn off random play" : "Random play song in playlist (if playlist null, randomly add)"}
+              </UncontrolledTooltip>
               {/* <Button onClick={this.handleToggleMuted}>{muted ? <VolumeOffIcon /> : <VolumeUpIcon />}</Button>*/}
-              <Button onClick={this.handleToggleLoop}>{loop ? <SyncDisabledIcon /> : <SyncIcon />}</Button>
-              <Button onClick={this.handleToggleHide}>{hide ? <DesktopAccessDisabledIcon /> : <DesktopWindowsIcon />}</Button>
-              <Button onClick={this.handleDarkMode} >{dark ? <FeaturedPlayListIcon /> : <PictureInPictureAltIcon />}</Button>
+              <Button id="loop" onClick={this.handleToggleLoop}>{loop ? <SyncDisabledIcon /> : <SyncIcon />}</Button>
+              <UncontrolledTooltip placement="bottom" target="loop">
+                {loop ? "Stop looping" : "Loop current song"}
+              </UncontrolledTooltip>
+              <Button id="hide" onClick={this.handleToggleHide}>{hide ? <DesktopAccessDisabledIcon /> : <DesktopWindowsIcon />}</Button>
+              <UncontrolledTooltip placement="bottom" target="hide">
+                {hide ? "Show the player screen" : "Hide above player screen"}
+              </UncontrolledTooltip>
+              <Button id="dark" onClick={this.handleDarkMode} >{dark ? <FeaturedPlayListIcon /> : <PictureInPictureAltIcon />}</Button>
+              <UncontrolledTooltip placement="bottom" target="dark">
+                {dark ? "Default background" : "Dark mode"}
+              </UncontrolledTooltip>
               {//ReactPlayer.canEnablePIP(url) &&
                 //<Button onClick={this.handleTogglePIP}>{pip ? 'Disable PiP' : 'Enable PiP'}</Button>
               }
@@ -587,7 +671,18 @@ class App extends Component {
                   {/*<CustomInput type="range" min={0} max={1} step='any' value={volume} onChange={this.handleVolumeChange} />*/}
                   <Grid container spacing={2}>
                     <Grid item>
-                      <VolumeDown />
+                      <IconButton id="volume" className={useStyles.margin} size="small"
+                        onClick={() => this.handleToggleMuted()}>
+                        {dark ?
+                          muted ? <MuiThemeProvider theme={theme}> <VolumeOffIcon style={theme.palette.white} /></MuiThemeProvider> :
+                            <MuiThemeProvider theme={theme}><VolumeDown style={theme.palette.white} /></MuiThemeProvider>
+                          :
+                          muted ? <MuiThemeProvider theme={theme}> <VolumeOffIcon style={theme.palette.black} /></MuiThemeProvider> :
+                            <MuiThemeProvider theme={theme}><VolumeDown style={theme.palette.black} /></MuiThemeProvider>
+                        }</IconButton>
+                      <UncontrolledTooltip placement="bottom" target="volume">
+                        {muted ? "Unmute" : "Mute"}
+                      </UncontrolledTooltip>
                     </Grid>
                     <Grid item xs>
                       <Slider value={volume * 100} onChange={this.handleVolumeChange} />
@@ -670,27 +765,27 @@ class App extends Component {
             {(this.state.collapse) ? 'Hide' : 'Details'}
           </Fab>
         </section>
-          <div >
-            <Modal isOpen={this.state.showModal} toggle={this.handleToggleModal} >
-              <ModalHeader toggle={this.handleToggleModal}>Playlist Menu</ModalHeader>
-              <ModalBody>
+        <div >
+          <Modal isOpen={this.state.showModal} toggle={this.handleToggleModal} >
+            <ModalHeader toggle={this.handleToggleModal}>Playlist Menu</ModalHeader>
+            <ModalBody>
               <Nav tabs>
-        <NavItem>
-          <NavLink
-            className={classnames({ active: activeTab === '1' })}
-            onClick={() => { this.setActiveTab('1'); }}
-          >
-            Adding to List
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: activeTab === '1' })}
+                    onClick={() => { this.setActiveTab('1'); }}
+                  >
+                    Adding to List
           </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink
-            className={classnames({ active: activeTab === '2' })}
-            onClick={() => { this.setActiveTab('2'); }}
-          >
-            Adding to database
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: activeTab === '2' })}
+                    onClick={() => { this.setActiveTab('2'); }}
+                  >
+                    Adding to database
           </NavLink>
-        </NavItem>
+                </NavItem>
                 <NavItem>
                   <NavLink
                     className={classnames({ active: activeTab === '3' })}
@@ -699,54 +794,54 @@ class App extends Component {
                     Customize Random
           </NavLink>
                 </NavItem>
-      </Nav>
+              </Nav>
               <TabContent activeTab={activeTab}>
-              <TabPane tabId="1">
-                <MaterialTable
-                  title="Song database"
-                  data={databaseplaylist}
-                  icons={tableIcons}
-                  columns={[
-                    { title: "Title", field: "label", cellStyle: { color: '#000000' }, headerStyle: { color: '#000000' } },
-                    { title: "Artist", field: "artist", cellStyle: { color: '#000000' }, headerStyle: { color: '#000000' } },
-                    { title: "Single/Album", field: "album", cellStyle: { color: '#000000' }, headerStyle: { color: '#000000' } },
-                    { title: "Source", field: "url", cellStyle: { color: '#000000' }, headerStyle: { color: '#000000' } },
-                  ]}
-                  //parentChildData={(row, rows) => rows.find(a => a.id === row.parentId)}
-                  options={{
-                    selection: true,
-                    grouping: true,
-                    sorting: true,
-                    search: true,
-                    filtering: true,
-                    pageSize: 10
-                  }}
-                  actions={[
-                    {
-                      tooltip: 'Add to List',
-                      icon: tableIcons.Add,
-                      onClick: (evt, data) => {
-                        this.handleCustomAdd(evt, data)
+                <TabPane tabId="1">
+                  <MaterialTable
+                    title="Song database"
+                    data={databaseplaylist}
+                    icons={tableIcons}
+                    columns={[
+                      { title: "Title", field: "label", cellStyle: { color: '#000000' }, headerStyle: { color: '#000000' } },
+                      { title: "Artist", field: "artist", cellStyle: { color: '#000000' }, headerStyle: { color: '#000000' } },
+                      { title: "Single/Album", field: "album", cellStyle: { color: '#000000' }, headerStyle: { color: '#000000' } },
+                      { title: "Source", field: "url", cellStyle: { color: '#000000' }, headerStyle: { color: '#000000' } },
+                    ]}
+                    //parentChildData={(row, rows) => rows.find(a => a.id === row.parentId)}
+                    options={{
+                      selection: true,
+                      grouping: true,
+                      sorting: true,
+                      search: true,
+                      filtering: true,
+                      pageSize: 10
+                    }}
+                    actions={[
+                      {
+                        tooltip: 'Add to List',
+                        icon: tableIcons.Add,
+                        onClick: (evt, data) => {
+                          this.handleCustomAdd(evt, data)
+                        }
                       }
-                    }
-                  ]}
-                />
+                    ]}
+                  />
                 </TabPane>
                 <TabPane tabId="2">
                   <Table>
                     <tr>
-                    <th>
+                      <th>
                         <Label className="darkselect">Name</Label>
-                    </th>
-                    <td>
+                      </th>
+                      <td>
                         <Input className="darkselect" type="text" onChange={(e) => this.handleAddName(e)}></Input>
-                    </td>
+                      </td>
                     </tr>
                     <tr>
-                    <th>
+                      <th>
                         <Label className="darkselect">Artist</Label>
-                    </th>
-                    <td>
+                      </th>
+                      <td>
                         <Input type="text" list="artistlist" onChange={(e) => this.handleAddArtistSelect(e)} />
                         <datalist id="artistlist" >
                           {artistlist.map((item, key) =>
@@ -760,13 +855,13 @@ class App extends Component {
                           onChange={(e) => this.handleAddArtistSelect(e)}
                     options={artistlist}
                         ></Select>*/}
-                    </td>
+                      </td>
                     </tr>
                     <tr>
-                    <th>
+                      <th>
                         <Label className="darkselect">Album</Label>
-                    </th>
-                    <td>
+                      </th>
+                      <td>
                         <Input type="text" list="albumlist" onChange={(e) => this.handleAddAlbumSelect(e)} />
                         <datalist id="albumlist" >
                           {albumlist.map((item, key) =>
@@ -780,24 +875,24 @@ class App extends Component {
                           onChange={(e) => this.handleAddAlbumSelect(e)}
                     options={albumlist}
                         ></Select>*/}
-                    </td>
+                      </td>
                     </tr>
                     <tr>
-                    <th>
+                      <th>
                         <Label className="darkselect">Source</Label>
-                    </th>
-                    <td>
+                      </th>
+                      <td>
                         <Input className="darkselect" type="text" onChange={(e) => this.handleAddSource(e)}></Input>
-                    </td>
+                      </td>
                     </tr>
                     <tr>
-                  <Button outline color="success"
+                      <Button outline color="success"
                         onClick={this.handleAddDatabase}>
                         Add
                     </Button>
                     </tr>
                   </Table>
-                  </TabPane>
+                </TabPane>
                 <TabPane tabId="3">
                   <MaterialTable
                     title="Song database"
@@ -829,10 +924,10 @@ class App extends Component {
                     ]}
                   />
                 </TabPane>
-                  </TabContent>
-              </ModalBody>
-            </Modal>
-          </div>
+              </TabContent>
+            </ModalBody>
+          </Modal>
+        </div>
       </div >
     );
   }
