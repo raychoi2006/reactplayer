@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/reactplayer/static/css/main.72ec2698.chunk.css",
-    "main.js": "/reactplayer/static/js/main.db3b6391.chunk.js",
-    "main.js.map": "/reactplayer/static/js/main.db3b6391.chunk.js.map",
+    "main.js": "/reactplayer/static/js/main.f60159f1.chunk.js",
+    "main.js.map": "/reactplayer/static/js/main.f60159f1.chunk.js.map",
     "runtime-main.js": "/reactplayer/static/js/runtime-main.b51f0126.js",
     "runtime-main.js.map": "/reactplayer/static/js/runtime-main.b51f0126.js.map",
     "static/css/2.a363fa89.chunk.css": "/reactplayer/static/css/2.a363fa89.chunk.css",
-    "static/js/2.7033f851.chunk.js": "/reactplayer/static/js/2.7033f851.chunk.js",
-    "static/js/2.7033f851.chunk.js.map": "/reactplayer/static/js/2.7033f851.chunk.js.map",
+    "static/js/2.1c700be0.chunk.js": "/reactplayer/static/js/2.1c700be0.chunk.js",
+    "static/js/2.1c700be0.chunk.js.map": "/reactplayer/static/js/2.1c700be0.chunk.js.map",
     "index.html": "/reactplayer/index.html",
-    "precache-manifest.f38709c16d658f3c2771072488484c13.js": "/reactplayer/precache-manifest.f38709c16d658f3c2771072488484c13.js",
+    "precache-manifest.e5d77a0bd4711970cc376e5747a50b1c.js": "/reactplayer/precache-manifest.e5d77a0bd4711970cc376e5747a50b1c.js",
     "service-worker.js": "/reactplayer/service-worker.js",
     "static/css/2.a363fa89.chunk.css.map": "/reactplayer/static/css/2.a363fa89.chunk.css.map",
     "static/css/main.72ec2698.chunk.css.map": "/reactplayer/static/css/main.72ec2698.chunk.css.map"
@@ -17,8 +17,8 @@
   "entrypoints": [
     "static/js/runtime-main.b51f0126.js",
     "static/css/2.a363fa89.chunk.css",
-    "static/js/2.7033f851.chunk.js",
+    "static/js/2.1c700be0.chunk.js",
     "static/css/main.72ec2698.chunk.css",
-    "static/js/main.db3b6391.chunk.js"
+    "static/js/main.f60159f1.chunk.js"
   ]
 }
