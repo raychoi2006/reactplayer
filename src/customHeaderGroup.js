@@ -24,11 +24,11 @@ export default class CustomHeaderGroup extends Component {
             <div>
                 Playlist
                 <IconButton className={useStyles.margin} size="small"
-                    onClick={() => this.props.agGridReact.gridOptions.context.componentParent.handlePlayInGrid()}>
+                    onClick={this.props.agGridReact.gridOptions.context.componentParent.handlePlayInGrid}>
                     <PlayArrowIcon color="secondary" /></IconButton>
                 &#60;--Click to Play
                 <IconButton className={useStyles.margin} size="small"
-                    onClick={() => this.props.agGridReact.gridOptions.context.componentParent.handleSaveListInGrid()}>
+                    onClick={this.props.agGridReact.gridOptions.context.componentParent.handleSaveListInGrid}>
                     <SaveIcon color="secondary" /></IconButton>
                 &#60;--Click to Save your Playlist as default
             </div>

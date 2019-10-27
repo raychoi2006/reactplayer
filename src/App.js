@@ -230,6 +230,8 @@ class App extends Component {
     this.handleToggleControls = this.handleToggleControls.bind(this);
     this.handleUpdatePlaylist = this.handleUpdatePlaylist.bind(this);
     this.handleToggleModal = this.handleToggleModal.bind(this);
+    this.handlePlayInGrid = this.handlePlayInGrid.bind(this);
+    this.handleSaveListInGrid = this.handleSaveListInGrid.bind(this);
   }
 
   onGridReady = params => {
@@ -310,12 +312,15 @@ class App extends Component {
     if (!this.state.showModal) {
       switch (this.state.activeTab) {
         case '1':
+            if (JSON.parse(localStorage.getItem('user')) === null)
           swal("Adding to List", "Choose songs by checkboxes and add to playlist.");
           break;
         case '2':
+            if (JSON.parse(localStorage.getItem('databaseplaylist')) === null)
           swal("Adding to Database", "Input song information and add to database.");
           break;
         case '3':
+            if (JSON.parse(localStorage.getItem('playlist')) === null)
           swal("Customize Random", "Choose songs for random, system will store your choices and random your choices only.");
           break;
       }
@@ -358,7 +363,7 @@ class App extends Component {
     }
   }
 
-  handleSaveListInGrid() {
+  handleSaveListInGrid= () => {
     if (this.state.rowData.length !== 0) {
       localStorage.setItem('gridplaylist', JSON.stringify(this.state.rowData))
       swal("Saved", "Default playlist are saved", "success")
@@ -369,7 +374,7 @@ class App extends Component {
     }
   }
 
-  handlePlayInGrid() {
+  handlePlayInGrid= () => {
     if (this.state.rowData.length !== 0)
       this.setState({ url: this.state.rowData[0].source, playing: true, playingTitle: this.state.rowData[0].next })
     else
@@ -462,6 +467,7 @@ class App extends Component {
     })
     this.setState({ rowData: tmp })
     this.gridApi.setRowData(this.state.rowData)
+    localStorage.setItem('user', "success added before")
     this.handleToggleModal()
   }
 
@@ -686,7 +692,7 @@ class App extends Component {
                       </UncontrolledTooltip>
                     </Grid>
                     <Grid item xs>
-                      <Slider value={volume * 100} onChange={this.handleVolumeChange} />
+                      <Slider value={volume * 100} onChange={this.handleVolumeChange} onBlur={this.handleVolumeChange} />
                     </Grid>
                     <Grid item>
                       <VolumeUpIcon />
