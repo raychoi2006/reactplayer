@@ -519,12 +519,15 @@ class App extends Component {
     this.setState({ activeTab: tab })
     switch (tab) {
       case '1':
+        if (JSON.parse(localStorage.getItem('user')) === null)
         swal("Adding to List", "Choose songs by checkboxes and add to playlist.");
         break;
       case '2':
+        if (JSON.parse(localStorage.getItem('databaseplaylist')) === null)
         swal("Adding to Database", "Input song information and add to database.");
         break;
       case '3':
+        if (JSON.parse(localStorage.getItem('playlist')) === null)
         swal("Customize Random", "Choose songs for random, system will store your choices and random your choices only.");
         break;
     }
@@ -692,7 +695,7 @@ class App extends Component {
                       </UncontrolledTooltip>
                     </Grid>
                     <Grid item xs>
-                      <Slider value={volume * 100} onChange={this.handleVolumeChange} onBlur={this.handleVolumeChange} />
+                      <Slider value={volume * 100} onChange={this.handleVolumeChange} />
                     </Grid>
                     <Grid item>
                       <VolumeUpIcon />
