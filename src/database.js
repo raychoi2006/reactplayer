@@ -1,5 +1,145 @@
 export default [
 	{
+		label: "柏木由紀 1stシングル ショートケーキ",
+		options: [
+			{
+				artist: "柏木由紀",
+				label: "ショートケーキ",
+				value: "柏木由紀 1stシングル ショートケーキ",
+				url: "https://www.youtube.com/watch?v=kx-oA-c4T4k",
+			},
+			{
+				artist: "柏木由紀",
+				label: "それでも泣かない",
+				value: "柏木由紀 1stシングル それでも泣かない",
+				url: "https://www.youtube.com/watch?v=7eYnNnv943Y",
+			},
+			{
+				artist: "柏木由紀",
+				label: "桜の木になろう",
+				value: "柏木由紀 1stシングル 桜の木になろう",
+				url: "https://www.youtube.com/watch?v=n3KHssqwFJc",
+			},
+			{
+				artist: "柏木由紀",
+				label: "未来橋",
+				value: "柏木由紀 1stシングル 未来橋",
+				url: "https://www.youtube.com/watch?v=Wp_mC1_P5dU",
+			},
+			{
+				artist: "柏木由紀",
+				label: "クラス会の後で",
+				value: "柏木由紀 1stシングル クラス会の後で",
+				url: "https://www.youtube.com/watch?v=4j5bTAElwyI",
+			},
+			{
+				artist: "柏木由紀",
+				label: "ジェラシーパンチ",
+				value: "柏木由紀 1stシングル ジェラシーパンチ",
+				url: "https://www.youtube.com/watch?v=erub5vTrySU",
+			},
+		],
+	},
+	{
+		label: "柏木由紀 2ndシングル Birthday wedding",
+		options: [
+			{
+				artist: "柏木由紀",
+				label: "Birthday wedding",
+				value: "柏木由紀 2ndシングル Birthday wedding",
+				url: "https://www.youtube.com/watch?v=nFonRpMDp8w",
+			},
+			{
+				artist: "柏木由紀",
+				label: "でもねずっと",
+				value: "柏木由紀 2ndシングル でもねずっと",
+				url: "https://www.youtube.com/watch?v=iZX7KkZxo_I",
+			},
+			{
+				artist: "柏木由紀",
+				label: "あなたと私",
+				value: "柏木由紀 2ndシングル あなたと私",
+				url: "https://www.youtube.com/watch?v=b64x1vhyEFY",
+			},
+			{
+				artist: "柏木由紀",
+				label: "口移しのチョコレート",
+				value: "柏木由紀 2ndシングル 口移しのチョコレート",
+				url: "https://www.youtube.com/watch?v=e4O8oG1B7aE",
+			},
+			{
+				artist: "柏木由紀",
+				label: "明日も笑おう",
+				value: "柏木由紀 2ndシングル 明日も笑おう",
+				url: "https://www.youtube.com/watch?v=cvejHcWkUqA",
+			},
+		],
+	},
+	{
+		label: "柏木由紀 3ndシングル そっけない君",
+		options: [
+			{
+				artist: "柏木由紀",
+				label: "そっけない君",
+				value: "柏木由紀 3ndシングル そっけない君",
+				url: "https://www.youtube.com/watch?v=oyyhhreD0DU",
+			},
+		],
+	},
+	{
+		label: "柏木由紀 ソロ",
+		options: [
+			{
+				artist: "柏木由紀",
+				label: "夜風の仕業",
+				value: "柏木由紀 ソロ 夜風の仕業",
+				url: "https://www.youtube.com/watch?v=P_8iMYngLzk",
+			},
+			{
+				artist: "柏木由紀",
+				label: "沈黙",
+				value: "柏木由紀 ソロ 沈黙",
+				url: "https://www.youtube.com/watch?v=p0MsfkZCSbI",
+			},
+			{
+				artist: "柏木由紀",
+				label: "ぽっかり",
+				value: "柏木由紀 ソロ ぽっかり",
+				url: "https://www.youtube.com/watch?v=bh1390Y2JEM",
+			},
+			{
+				artist: "柏木由紀",
+				label: "真夜中の歯磨き",
+				value: "柏木由紀 ソロ 真夜中の歯磨き",
+				url: "https://www.youtube.com/watch?v=5j8ir8kO5dw",
+			},
+			{
+				artist: "柏木由紀",
+				label: "火山灰",
+				value: "柏木由紀 ソロ 火山灰",
+				url: "https://www.youtube.com/watch?v=nfSaA_mjK1Q",
+			},
+			{
+				artist: "柏木由紀",
+				label: "広い世界の中で出逢えたこと",
+				value: "柏木由紀 ソロ 広い世界の中で出逢えたこと",
+				url: "https://www.youtube.com/watch?v=vpRV1cfvdIk",
+			},
+			{
+				artist: "柏木由紀",
+				label: "よわむしけむし",
+				value: "柏木由紀 ソロ よわむしけむし",
+				url: "https://www.youtube.com/watch?v=tGnHtP-9vg4",
+			},
+			{
+				artist: "柏木由紀",
+				label: "Miss you",
+				value: "柏木由紀 ソロ Miss you",
+				url: "https://www.youtube.com/watch?v=A7MUNCObMP8",
+			},
+		],
+	},
+	{
 		label: "乃木坂46 24thシングル 夜明けまで強がらなくてもいい",
 		options: [
 			{
