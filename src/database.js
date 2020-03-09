@@ -150,9 +150,27 @@ export default [
 			},
 			{
 				artist: "乃木坂46",
+				label: "サヨナラ Stay with me",
+				value: "乃木坂46 25thシングル しあわせの保護色 サヨナラ Stay with me",
+				url: "https://www.youtube.com/watch?v=QDpXrtGX42g",
+			},
+			{
+				artist: "乃木坂46",
 				label: "アナスターシャ",
 				value: "乃木坂46 25thシングル しあわせの保護色 アナスターシャ",
 				url: "https://www.youtube.com/watch?v=D_AirZODrUU",
+			},
+			{
+				artist: "乃木坂46",
+				label: "ファンタスティック三色パン",
+				value: "乃木坂46 25thシングル しあわせの保護色 ファンタスティック三色パン",
+				url: "https://www.youtube.com/watch?v=u9BD5k59l1s",
+			},
+			{
+				artist: "乃木坂46",
+				label: "I see…",
+				value: "乃木坂46 25thシングル しあわせの保護色 I see…",
+				url: "https://www.youtube.com/watch?v=6sfWfHMfWJI",
 			},
 		],
 	},
@@ -1659,6 +1677,24 @@ export default [
 				url: "https://www.youtube.com/watch?v=bGBy80LdkPI",
 			},
 			{
+				artist: "こぴ",
+				label: "I LOVE.../Official髭男dism",
+				value: "Kobasolo こぴ I LOVE.../Official髭男dism",
+				url: "https://www.youtube.com/watch?v=UCoYugncYIc",
+			},
+			{
+				artist: "こぴ",
+				label: "願い /sumika",
+				value: "Kobasolo こぴ 願い /sumika",
+				url: "https://www.youtube.com/watch?v=HCqT3VYV_Ec",
+			},
+			{
+				artist: "こぴ",
+				label: "パプリカ /Foorin",
+				value: "Kobasolo こぴ パプリカ /Foorin",
+				url: "https://www.youtube.com/watch?v=3iR32gC_c7w",
+			},
+			{
 				artist: "藤川千愛",
 				label: "幸せ/back number",
 				value: "Kobasolo 藤川千愛 幸せ/back number",
@@ -1693,17 +1729,6 @@ export default [
 				label: "ヒロイン/back number 杏沙子cover",
 				value: "Kobasolo 杏沙子 ヒロイン/back number",
 				url: "https://www.youtube.com/watch?v=FvjvxxXqwb8",
-			},
-		]
-	},
-	{
-		label: "SEKAI NO OWARI",
-		options: [
-			{
-				artist: "SEKAI NO OWARI",
-				label: "Dragon Night",
-				value: "SEKAI NO OWARI Dragon Night",
-				url: "https://www.youtube.com/watch?v=gsVGf1T2Hfs",
 			},
 		]
 	},
@@ -1805,17 +1830,6 @@ export default [
 				label: "白日",
 				value: "King Gnu 白日",
 				url: "https://www.youtube.com/watch?v=ony539T074w",
-			},
-		]
-	},
-	{
-		label: "あいみょん",
-		options: [
-			{
-				artist: "あいみょん",
-				label: "マリーゴールド",
-				value: "あいみょん マリーゴールド",
-				url: "https://www.youtube.com/watch?v=0xSiBpUdW4E",
 			},
 		]
 	},
@@ -1922,12 +1936,6 @@ export default [
 				label: "Justiφ's",
 				value: "仮面ライダー555 Justiφ's ISSA Band",
 				url: "https://www.youtube.com/watch?v=7g0OwAqv0kQ",
-			},
-			{
-				artist: "相川七瀨",
-				label: "Round ZERO ～BLADE BRAVE",
-				value: "仮面ライダーブレイド Round ZERO ～BLADE BRAVE 相川七瀨",
-				url: "https://www.youtube.com/watch?v=WT-dl4AnkrQ",
 			},
 			{
 				artist: "布施明",
@@ -2039,35 +2047,13 @@ export default [
 		]
 	},
 	{
-		label: "劉亦菲",
+		label: "孫燕姿",
 		options: [
 			{
-				artist: "劉亦菲",
-				label: "放下",
-				value: "劉亦菲 放下",
-				url: "https://www.youtube.com/watch?v=HO7xeCW29Zw",
-			},
-		]
-	},
-	{
-		label: "庾澄慶",
-		options: [
-			{
-				artist: "庾澄慶",
-				label: "情非得已",
-				value: "庾澄慶 情非得已",
-				url: "https://www.youtube.com/watch?v=0rpbhqZI0hc",
-			},
-		]
-	},
-	{
-		label: "梁靜茹",
-		options: [
-			{
-				artist: "梁靜茹",
-				label: "沒有如果",
-				value: "梁靜茹 沒有如果",
-				url: "https://www.youtube.com/watch?v=Rc464pyWn2k",
+				artist: "孫燕姿",
+				label: "遇見",
+				value: "孫燕姿 遇見",
+				url: "https://www.youtube.com/watch?v=zgmnU8BxE2c",
 			},
 		]
 	},
@@ -2079,17 +2065,6 @@ export default [
 				label: "愛你",
 				value: "陳芳語 愛你",
 				url: "https://www.youtube.com/watch?v=RGnlTJTuVzs",
-			},
-		]
-	},
-	{
-		label: "魔幻力量",
-		options: [
-			{
-				artist: "魔幻力量",
-				label: "射手",
-				value: "魔幻力量 射手",
-				url: "https://www.youtube.com/watch?v=KuPVMxfkmNg",
 			},
 		]
 	},
@@ -2112,12 +2087,6 @@ export default [
 				label: "稻香",
 				value: "周杰倫 稻香",
 				url: "https://www.youtube.com/watch?v=sHD_z90ZKV0",
-			},
-			{
-				artist: "周杰倫",
-				label: "算什麼男人",
-				value: "周杰倫 算什麼男人",
-				url: "https://www.youtube.com/watch?v=v489sYYjtHI",
 			},
 			{
 				artist: "周杰倫",
@@ -2152,29 +2121,6 @@ export default [
 				label: "那些年",
 				value: "胡夏 那些年",
 				url: "https://www.youtube.com/watch?v=xWzlwGVQ6_Q",
-			},
-		]
-	},
-	{
-		label: "熊仔頭bgm",
-		options: [
-			{
-				artist: "李家豪",
-				label: "將軍令",
-				value: "李家豪 將軍令",
-				url: "https://www.youtube.com/watch?v=Swv_XPu9lbM",
-			},
-			{
-				artist: "unknown",
-				label: "乞愛之人",
-				value: "乞愛之人",
-				url: "https://www.youtube.com/watch?v=xACWMX_Fy0k",
-			},
-			{
-				artist: "unknown",
-				label: "最愛的人",
-				value: "最愛的人",
-				url: "https://www.youtube.com/watch?v=YETnadisaUM",
 			},
 		]
 	},
