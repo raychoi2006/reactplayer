@@ -26,9 +26,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: git config --global user.email "raychoi2006@gmail.com"
     - run: git config --global user.name "raychoi2006"
-    - run: git remote set-url origin https://6e54121456d97d4a1cc05511e49246928c7c9d31@github.com/raychoi2006/reactplayer.git
+    - run: git remote set-url origin https://b187378ec52092ee33e3cd3f1412c96444460047@github.com/raychoi2006/reactplayer.git
     - run: yarn add deepmerge
-      
     - run: npm install
     - run: yarn run deploy
 
