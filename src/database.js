@@ -140,6 +140,23 @@ export default [
 		],
 	},
 	{
+		label: "乃木坂46 25thシングル しあわせの保護色",
+		options: [
+			{
+				artist: "乃木坂46",
+				label: "しあわせの保護色",
+				value: "乃木坂46 25thシングル しあわせの保護色",
+				url: "https://www.youtube.com/watch?v=aXrU5zpy9Pc",
+			},
+			{
+				artist: "乃木坂46",
+				label: "アナスターシャ",
+				value: "乃木坂46 25thシングル しあわせの保護色 アナスターシャ",
+				url: "https://www.youtube.com/watch?v=D_AirZODrUU",
+			},
+		],
+	},
+	{
 		label: "乃木坂46 24thシングル 夜明けまで強がらなくてもいい",
 		options: [
 			{
@@ -217,6 +234,12 @@ export default [
 				label: "もし君がいなければ",
 				value: "乃木坂46 4thアルバム 今が思い出になるまで もし君がいなければ 衛藤美彩",
 				url: "https://www.youtube.com/watch?v=8ICidqrZTAE",
+			},
+			{
+				artist: "乃木坂46",
+				label: "ゴルゴンゾーラ",
+				value: "乃木坂46 4thアルバム 今が思い出になるまで ゴルゴンゾーラ",
+				url: "https://www.youtube.com/watch?v=ZIW30t1TYzU",
 			},
 		]
 	},
