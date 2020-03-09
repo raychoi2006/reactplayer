@@ -27,7 +27,7 @@ jobs:
     - run: yarn add deepmerge
     - run: npm install
     - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - run: npm run build
+    - run: yarn run deploy
       env:
         CI: true
