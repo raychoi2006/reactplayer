@@ -93,25 +93,13 @@ export default [
 				artist: "柏木由紀",
 				label: "夜風の仕業",
 				value: "柏木由紀 ソロ 夜風の仕業",
-				url: "https://www.youtube.com/watch?v=P_8iMYngLzk",
+				url: "https://www.youtube.com/watch?v=BkxOLER3pMI",
 			},
 			{
 				artist: "柏木由紀",
 				label: "沈黙",
 				value: "柏木由紀 ソロ 沈黙",
 				url: "https://www.youtube.com/watch?v=p0MsfkZCSbI",
-			},
-			{
-				artist: "柏木由紀",
-				label: "ぽっかり",
-				value: "柏木由紀 ソロ ぽっかり",
-				url: "https://www.youtube.com/watch?v=bh1390Y2JEM",
-			},
-			{
-				artist: "柏木由紀",
-				label: "真夜中の歯磨き",
-				value: "柏木由紀 ソロ 真夜中の歯磨き",
-				url: "https://www.youtube.com/watch?v=5j8ir8kO5dw",
 			},
 			{
 				artist: "柏木由紀",
@@ -140,6 +128,53 @@ export default [
 		],
 	},
 	{
+		label: "乃木坂46 30thシングル 好きというのはロックだぜ！",
+		options: [
+			{
+				artist: "乃木坂46",
+				label: "好きというのはロックだぜ！",
+				value: "乃木坂46 30thシングル 好きというのはロックだぜ！",
+				url: "https://www.youtube.com/watch?v=CSLYbwe9JEo",
+			},
+			{
+				artist: "乃木坂46",
+				label: "Under's Love",
+				value: "乃木坂46 30thシングル Under's Love",
+				url: "https://www.youtube.com/watch?v=7RKrpUMuhSY",
+			},
+			{
+				artist: "乃木坂46",
+				label: "僕が手を叩く方へ",
+				value: "乃木坂46 30thシングル 僕が手を叩く方へ",
+				url: "https://www.youtube.com/watch?v=6u2IcdAE2ms",
+			},
+			{
+				artist: "乃木坂46",
+				label: "ジャンピングジョーカーフラッシュ",
+				value: "乃木坂46 30thシングル ジャンピングジョーカーフラッシュ",
+				url: "https://www.youtube.com/watch?v=Nvo1QclrFg4",
+			},
+			{
+				artist: "乃木坂46",
+				label: "バンドエイド剥がすような別れ方",
+				value: "乃木坂46 30thシングル バンドエイド剥がすような別れ方",
+				url: "https://www.youtube.com/watch?v=NCw7XnJMXhA",
+			},
+			{
+				artist: "乃木坂46",
+				label: "パッションフルーツの食べ方",
+				value: "乃木坂46 30thシングル パッションフルーツの食べ方",
+				url: "https://www.youtube.com/watch?v=Trdn41NTAPQ",
+			},
+			{
+				artist: "乃木坂46",
+				label: "夢を見る筋肉",
+				value: "乃木坂46 30thシングル 夢を見る筋肉",
+				url: "https://www.youtube.com/watch?v=WAI9JRysZjE",
+			}
+		],
+	},
+	{
 		label: "乃木坂46 24thシングル 夜明けまで強がらなくてもいい",
 		options: [
 			{
@@ -164,7 +199,7 @@ export default [
 				artist: "乃木坂46",
 				label: "時々　思い出してください",
 				value: "乃木坂46 24thシングル 時々　思い出してください 桜井玲香",
-				url: "https://www.youtube.com/watch?v=b-m0KefiqBM",
+				url: "https://www.youtube.com/watch?v=-B2Wn1L3Ieo",
 			},
 			{
 				artist: "乃木坂46",
@@ -193,13 +228,13 @@ export default [
 				artist: "乃木坂46",
 				label: "４番目の光",
 				value: "乃木坂46 23thシングル ４番目の光",
-				url: "https://www.youtube.com/watch?v=WQTshyuqz-w",
+				url: "https://www.youtube.com/watch?v=1YjVblpLRYQ",
 			},
 			{
 				artist: "乃木坂46",
 				label: "滑走路",
 				value: "乃木坂46 23thシングル 滑走路",
-				url: "https://www.youtube.com/watch?v=SwN-l055D84",
+				url: "https://www.youtube.com/watch?v=A-xJTD2nRbs",
 			},
 			{
 				artist: "乃木坂46",
@@ -298,7 +333,7 @@ export default [
 				artist: "乃木坂46",
 				label: "あんなに好きだったのに",
 				value: "乃木坂46 21thシングル あんなに好きだったのに",
-				url: "https://www.youtube.com/watch?v=08JIZsRmKls",
+				url: "https://www.youtube.com/watch?v=fkjAIoV8r2c",
 			},
 		],
 	},
@@ -414,7 +449,7 @@ export default [
 				artist: "乃木坂46",
 				label: "泣いたっていいじゃないか",
 				value: "乃木坂46 18thシングル 泣いたっていいじゃないか",
-				url: "https://www.youtube.com/watch?v=GoS3OJhN2Tw",
+				url: "https://www.youtube.com/watch?v=l5Gnozqq7y0",
 			},
 			{
 				artist: "乃木坂46",
@@ -444,7 +479,7 @@ export default [
 				artist: "乃木坂46",
 				label: "未来の答え",
 				value: "乃木坂46 18thシングル 未来の答え",
-				url: "https://www.youtube.com/watch?v=5fI6lDV7BNY",
+				url: "https://www.youtube.com/watch?v=_iXcG20p-b4",
 			},
 		],
 	},
@@ -923,7 +958,7 @@ export default [
 				artist: "乃木坂46",
 				label: "孤独兄弟",
 				value: "乃木坂46 8thシングル 孤独兄弟",
-				url: "https://www.youtube.com/watch?v=Xs6UbqoZ5zg",
+				url: "https://www.youtube.com/watch?v=DJd7uAk8yrg",
 			},
 			{
 				artist: "乃木坂46",
@@ -1040,7 +1075,7 @@ export default [
 				artist: "乃木坂46",
 				label: "ロマンティックいか焼き",
 				value: "乃木坂46 5thシングル ロマンティックいか焼き",
-				url: "https://www.youtube.com/watch?v=-18BjuDUezI",
+				url: "https://www.youtube.com/watch?v=VcqlqQW2Jbo",
 			},
 			{
 				artist: "乃木坂46",
@@ -1145,7 +1180,7 @@ export default [
 				artist: "乃木坂46",
 				label: "おいでシャンプー",
 				value: "乃木坂46 2ndシングル おいでシャンプー",
-				url: "https://www.youtube.com/watch?v=Vb0SltPaQSc",
+				url: "https://www.youtube.com/watch?v=rDZQzWndZyk",
 			},
 			{
 				artist: "乃木坂46",
@@ -1233,7 +1268,7 @@ export default [
 				artist: "西野七瀬 × tofubeats",
 				label: "ふめつのこころ",
 				value: "電影少女 ふめつのこころ 西野七瀬",
-				url: "https://www.youtube.com/watch?v=rmS9hhxgaLg",
+				url: "https://www.youtube.com/watch?v=wIYhpjCP6yY",
 			},
 		]
 	},
@@ -1290,7 +1325,7 @@ export default [
 				artist: "欅坂46",
 				label: "ゼンマイ仕掛けの夢",
 				value: "欅坂46 6thシングル ゼンマイ仕掛けの夢 ゆいちゃんず yuichanzu",
-				url: "https://www.youtube.com/watch?v=dXoYCtrnyIo",
+				url: "https://www.youtube.com/watch?v=51TuLoiQu6s",
 			},
 		]
 	},
@@ -1353,7 +1388,7 @@ export default [
 				artist: "欅坂46",
 				label: "チューニング",
 				value: "欅坂46 4thシングル チューニング ゆいちゃんず yuichanzu",
-				url: "https://www.youtube.com/watch?v=yAbBH2XKO8M",
+				url: "https://www.youtube.com/watch?v=mw-LYfpRMk4",
 			},
 			{
 				artist: "欅坂46",
@@ -1433,7 +1468,7 @@ export default [
 				artist: "日向坂46",
 				label: "やさしさが邪魔する",
 				value: "日向坂46 2ndシングル やさしさが邪魔する",
-				url: "https://www.youtube.com/watch?v=mde4aJ1pdkw",
+				url: "https://www.youtube.com/watch?v=_QFWnBW6yUo",
 			},
 		]
 	},
@@ -1450,13 +1485,13 @@ export default [
 				artist: "日向坂46",
 				label: "ときめき草",
 				value: "日向坂46 1stシングル ときめき草",
-				url: "https://www.youtube.com/watch?v=HK8RgTCilWI",
+				url: "https://www.youtube.com/watch?v=bgCR9HlsSPY",
 			},
 			{
 				artist: "日向坂46",
 				label: "Footsteps",
 				value: "日向坂46 1stシングル Footsteps",
-				url: "https://www.youtube.com/watch?v=DiaCFQ9UtC8",
+				url: "https://www.youtube.com/watch?v=v5n7rpWZIqI",
 			},
 		]
 	},

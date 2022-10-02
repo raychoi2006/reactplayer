@@ -292,9 +292,20 @@ export default [
 	options:[
   {
 	artist:"張敬軒",
-	label:"只是太愛你",
-	value:"張敬軒 只是太愛你",
-	url:"https://www.youtube.com/watch?v=k2rVffhNd0E",
+	label:"X Hins Live in Hong Kong The Next 20張敬軒演唱會",
+	value:"張敬軒 X Hins Live in Hong Kong The Next 20張敬軒演唱會",
+	url:"https://www.youtube.com/watch?v=jUGSmvJ8XNQ&t=6705s",
+  },
+  ]
+},
+{
+	label:"陳奕迅",
+	options:[
+  {
+	artist:"陳奕迅",
+	label:"粵語金曲第一輯",
+	value:"陳奕迅 粵語金曲第一輯",
+	url:"https://www.youtube.com/watch?v=oHhn0lIyaSY&t=2153s",
   },
   ]
 },
