@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/reactplayer/static/css/main.72ec2698.chunk.css",
+    "main.js": "/reactplayer/static/js/main.222a4311.chunk.js",
+    "main.js.map": "/reactplayer/static/js/main.222a4311.chunk.js.map",
+    "runtime-main.js": "/reactplayer/static/js/runtime-main.ab331756.js",
+    "runtime-main.js.map": "/reactplayer/static/js/runtime-main.ab331756.js.map",
+    "static/css/2.38eec926.chunk.css": "/reactplayer/static/css/2.38eec926.chunk.css",
+    "static/js/2.771394d8.chunk.js": "/reactplayer/static/js/2.771394d8.chunk.js",
+    "static/js/2.771394d8.chunk.js.map": "/reactplayer/static/js/2.771394d8.chunk.js.map",
+    "static/js/3.81200d26.chunk.js": "/reactplayer/static/js/3.81200d26.chunk.js",
+    "static/js/3.81200d26.chunk.js.map": "/reactplayer/static/js/3.81200d26.chunk.js.map",
+    "static/js/4.df6dd854.chunk.js": "/reactplayer/static/js/4.df6dd854.chunk.js",
+    "static/js/4.df6dd854.chunk.js.map": "/reactplayer/static/js/4.df6dd854.chunk.js.map",
+    "static/js/5.4c9b1079.chunk.js": "/reactplayer/static/js/5.4c9b1079.chunk.js",
+    "static/js/5.4c9b1079.chunk.js.map": "/reactplayer/static/js/5.4c9b1079.chunk.js.map",
+    "index.html": "/reactplayer/index.html",
+    "precache-manifest.21c0e30dcc4328b92f64d073ce6ecddb.js": "/reactplayer/precache-manifest.21c0e30dcc4328b92f64d073ce6ecddb.js",
+    "service-worker.js": "/reactplayer/service-worker.js",
+    "static/css/2.38eec926.chunk.css.map": "/reactplayer/static/css/2.38eec926.chunk.css.map",
+    "static/css/main.72ec2698.chunk.css.map": "/reactplayer/static/css/main.72ec2698.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ab331756.js",
+    "static/css/2.38eec926.chunk.css",
+    "static/js/2.771394d8.chunk.js",
+    "static/css/main.72ec2698.chunk.css",
+    "static/js/main.222a4311.chunk.js"
+  ]
+}
