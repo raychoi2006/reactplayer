@@ -21,16 +21,11 @@ import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import ShuffleIcon from '@material-ui/icons/Shuffle';
 import SyncAltIcon from '@material-ui/icons/SyncAlt';
-//import FastForwardIcon from '@material-ui/icons/FastForward';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import PictureInPictureAltIcon from '@material-ui/icons/PictureInPictureAlt';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import jpplaylist from './jpplaylist';
-import chiplaylist from './chiplaylist';
-import chianimateplaylist from './chianimateplaylist';
-//import testplaylist from './testplaylist';
 import database from './database';
 import { forwardRef } from 'react';
 import MaterialTable from 'material-table';
@@ -62,9 +57,6 @@ import './range.css'
 import './App.css'
 import ReactPlayer from './ReactPlayer'
 import CustomHeaderGroup from "./customHeaderGroup.js";
-// bootstrap ag-grid-community load-script
-//import axios from 'axios';
-//import Duration from './Duration'
 import swal from 'sweetalert';
 
 const tableIcons = {
@@ -102,11 +94,6 @@ else {
 let gridplaylist = []
 if (JSON.parse(localStorage.getItem('gridplaylist')) !== null)
 gridplaylist = JSON.parse(localStorage.getItem('gridplaylist'))
-console.log(gridplaylist)
-/*const playlist = jpplaylist;
-chiplaylist.map((index, key) => {
-  playlist.push({ label: index.label, options: index.options })
-})*/
 
 let databaseplaylist = []
 if (JSON.parse(localStorage.getItem('databaseplaylist')) === null) {
