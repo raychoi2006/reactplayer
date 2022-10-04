@@ -87,7 +87,7 @@ export default [
 		],
 	},
 	{
-		label: "柏木由紀 ソロ",
+		label: "柏木由紀 フレンチ・キス",
 		options: [
 			{
 				artist: "柏木由紀",
